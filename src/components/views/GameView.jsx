@@ -1,5 +1,7 @@
+import GameBoard from "../game/GameBoard.jsx";
+
 function GameView() {
-  return <p>Game View</p>;
+  return <GameBoard />;
 }
 
 export default GameView;
