@@ -1,0 +1,9 @@
+:root {
+  --main-font: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --txt-lineheight: 1;
+  --txt-fontsize: 16;
+
+  --col-txt: #242424;
+  --bg-col: rgb(255, 255, 255, 0.87);
+  --bg: rgb(255, 255, 255, 0.87);
+}
