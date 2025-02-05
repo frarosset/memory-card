@@ -1,4 +1,5 @@
 import Card from "./Card.jsx";
+import "../../styles/GameBoard.css";
 
 function GameBoard() {
   // The deck is temporarily just a local variable which contains some possible cards to use.

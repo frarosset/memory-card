@@ -6,4 +6,7 @@
   --col-txt: #242424;
   --bg-col: rgb(255, 255, 255, 0.87);
   --bg: rgb(255, 255, 255, 0.87);
+
+  --gameboard-padding: max(3vw, 1em);
+  --gameboard-gap: max(2vw, 0.5em);
 }

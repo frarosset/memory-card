@@ -1,0 +1,13 @@
+.gameboard {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  padding: var(--gameboard-padding);
+  gap: var(--gameboard-gap);
+}
