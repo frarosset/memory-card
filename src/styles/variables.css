@@ -9,4 +9,8 @@
 
   --gameboard-padding: max(3vw, 1em);
   --gameboard-gap: max(2vw, 0.5em);
+
+  --cards-per-row: 6;
+  --card-radius: 0.5vw;
+  --card-shadow: 0 1vw 1vw black;
 }

@@ -1,0 +1,14 @@
+.card {
+  --card-size: calc(
+    (
+        100dvw - var(--gameboard-gap) * (var(--cards-per-row) - 1) -
+          var(--gameboard-padding) * 2 - 4px
+      ) / var(--cards-per-row)
+  );
+
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+
+  width: var(--card-size);
+  height: var(--card-size);
+}
