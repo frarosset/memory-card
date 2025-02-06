@@ -34,11 +34,11 @@ function useDeck(requestedDeckSize) {
   const cardsToFetch = useRef(requestedDeckSize);
 
   useEffect(() => {
-    console.log("EffectInDeck", {
-      requestedDeckSize: requestedDeckSize,
-      currentDeckSize: deck.length,
-      cardsToFetch: cardsToFetch.current,
-    });
+    // console.log("EffectInDeck", {
+    //   requestedDeckSize: requestedDeckSize,
+    //   currentDeckSize: deck.length,
+    //   cardsToFetch: cardsToFetch.current,
+    // });
 
     if (cardsToFetch.current == 0) {
       cardsToFetch.current = Math.max(requestedDeckSize - deck.length, 0);
@@ -52,8 +52,8 @@ function useDeck(requestedDeckSize) {
           const newCards = await fetchCardsData(n, abortController.signal);
           cardsToFetch.current = 0;
           setDeck(structuredClone([...deck, ...newCards]));
-        } catch (e) {
-          console.log(e.message);
+        } catch {
+          //console.log(e.message);
         }
       };
 
