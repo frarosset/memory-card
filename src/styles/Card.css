@@ -12,3 +12,8 @@
   width: var(--card-size);
   height: var(--card-size);
 }
+
+/* style for development only */
+.card.selected {
+  opacity: 0.5;
+}
