@@ -34,11 +34,11 @@ function useDeck(requestedDeckSize) {
   const cardsToFetch = useRef(requestedDeckSize);
 
   useEffect(() => {
-    console.log("EffectInDeck", {
-      requestedDeckSize: requestedDeckSize,
-      currentDeckSize: deck.length,
-      cardsToFetch: cardsToFetch.current,
-    });
+    // console.log("EffectInDeck", {
+    //   requestedDeckSize: requestedDeckSize,
+    //   currentDeckSize: deck.length,
+    //   cardsToFetch: cardsToFetch.current,
+    // });
 
     if (cardsToFetch.current == 0) {
       cardsToFetch.current = Math.max(requestedDeckSize - deck.length, 0);
