@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { PropTypes } from "prop-types";
 import GameBoard from "../game/GameBoard.jsx";
+import ScoreBoard from "../game/ScoreBoard.jsx";
 
 function GameView({ bestScore, setBestScore }) {
   // Game score
@@ -20,12 +21,18 @@ function GameView({ bestScore, setBestScore }) {
     });
   };
 
-  console.log(score, bestScore, isNewBestScore.current);
-
   return (
-    <main className={"game-view"}>
-      <GameBoard incrementScore={incrementScore} />
-    </main>
+    <div className={"view game-view"}>
+      <header>
+        <ScoreBoard
+          {...{ score, bestScore }}
+          isNewBestScore={isNewBestScore.current}
+        />
+      </header>
+      <main>
+        <GameBoard incrementScore={incrementScore} />
+      </main>
+    </div>
   );
 }
 
