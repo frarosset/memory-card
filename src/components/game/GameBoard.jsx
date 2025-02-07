@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+import { PropTypes } from "prop-types";
 import Card from "./Card.jsx";
 import useDeck from "./useDeck.js";
 import useSelectedCards from "./useSelectedCards.js";
 import "../../styles/GameBoard.css";
 
-function GameBoard() {
+function GameBoard({ setScore }) {
   // The imposed size of the deck, which contains the possible cards to use.
   // It is not necessarily equal to the actual size of the deck defined next,
   // because such deck is filled asyncronously to deckSize by useDeck() custom hook.
@@ -55,6 +56,7 @@ function GameBoard() {
     }
 
     // code for clicking on an unselected card (todo)
+    setScore((s) => s + 1);
     setGameState("fetching");
     setSelectedCard(cardId);
 
@@ -80,5 +82,9 @@ function GameBoard() {
     </div>
   );
 }
+
+GameBoard.propTypes = {
+  setScore: PropTypes.func,
+};
 
 export default GameBoard;
