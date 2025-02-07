@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { PropTypes } from "prop-types";
 import GameBoard from "../game/GameBoard.jsx";
 import ScoreBoard from "../game/ScoreBoard.jsx";
+import "../../styles/GameView.css";
 
 function GameView({ bestScore, setBestScore }) {
   // Game score

@@ -1,0 +1,26 @@
+.scoreboard {
+  display: grid;
+  grid-template-areas:
+    ". score-label score-value"
+    "bestscore-new bestscore-label bestscore-value";
+  grid-template-columns: max-content max-content minmax(2.5em, max-content);
+  gap: 0 0.5em;
+  padding: var(--);
+}
+
+.scoreboard-score-label {
+  grid-area: score-label;
+}
+.scoreboard-score-value {
+  grid-area: score-value;
+}
+.scoreboard-bestscore-new {
+  grid-area: bestscore-new;
+  font-weight: bold;
+}
+.scoreboard-bestscore-label {
+  grid-area: bestscore-label;
+}
+.scoreboard-bestscore-value {
+  grid-area: bestscore-value;
+}

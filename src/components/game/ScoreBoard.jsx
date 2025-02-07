@@ -1,4 +1,5 @@
 import { PropTypes } from "prop-types";
+import "../../styles/ScoreBoard.css";
 
 function ScoreBoard({ score, bestScore, isNewBestScore }) {
   return (
