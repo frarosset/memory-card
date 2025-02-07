@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "./Card.jsx";
 import useDeck from "./useDeck.js";
 import useSelectedCards from "./useSelectedCards.js";
@@ -22,6 +22,21 @@ function GameBoard() {
   // the other to acknowledge that the associated card has been selected.
   const { isSelectedCard, setSelectedCard } = useSelectedCards();
 
+  // The gameState state keeps track on the phase of the game.
+  // Eg, the cards click callbacks are disabled when cards are being fetched. [todo]
+  // The applied style might also depend on this. [todo]
+  // States: "fetching-init" > "ready" > "fetching" > "ready" >...
+  const [gameState, setGameState] = useState("fetching-init");
+
+  useEffect(() => {
+    const isFetching =
+      gameState === "fetching-init" || gameState === "fetching";
+
+    if (isFetching && deckSize === deck.length) {
+      setGameState("ready");
+    }
+  }, [deck, deckSize, gameState]);
+
   // Temporary click callback to test the deck handling of useDeck
   // Event delegation is used: when a click is captured, we have to check
   // whether there is a card in the clicked point.
@@ -40,6 +55,7 @@ function GameBoard() {
     }
 
     // code for clicking on an unselected card (todo)
+    setGameState("fetching");
     setSelectedCard(cardId);
 
     setDeckSize((x) => x + 1);
@@ -49,7 +65,10 @@ function GameBoard() {
   const tableCards = deck;
 
   return (
-    <div className="gameboard" onClick={clickCallback}>
+    <div
+      className="gameboard"
+      onClick={gameState !== "fetching" ? clickCallback : undefined}
+    >
       {tableCards.map((card) => (
         <Card
           key={card.id}
