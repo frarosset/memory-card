@@ -11,9 +11,27 @@
 
   width: var(--card-size);
   height: var(--card-size);
+
+  transition-property: transform opacity;
+  transition-duration: var(--card-transition-duration);
+  transition-timing-function: ease;
 }
 
 /* style for development only */
 .card.selected {
   opacity: 0.5;
+}
+
+.gameboard.fetching .card {
+  transform: rotate(5deg);
+}
+
+@starting-style {
+  .card {
+    opacity: 0;
+    transform: scale(1.1) rotate(10deg);
+  }
+  .gameboard.fetching-init .card {
+    transform: scale(0) rotate(0) !important;
+  }
 }

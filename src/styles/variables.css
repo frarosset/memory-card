@@ -13,4 +13,5 @@
   --cards-per-row: 6;
   --card-radius: 0.5vw;
   --card-shadow: 0 1vw 1vw black;
+  --card-transition-duration: 1s;
 }

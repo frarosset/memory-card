@@ -66,7 +66,7 @@ function GameBoard() {
 
   return (
     <div
-      className="gameboard"
+      className={`gameboard ${gameState}`}
       onClick={gameState !== "fetching" ? clickCallback : undefined}
     >
       {tableCards.map((card) => (
