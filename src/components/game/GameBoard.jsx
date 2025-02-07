@@ -5,7 +5,7 @@ import useDeck from "./useDeck.js";
 import useSelectedCards from "./useSelectedCards.js";
 import "../../styles/GameBoard.css";
 
-function GameBoard({ setScore }) {
+function GameBoard({ incrementScore }) {
   // The imposed size of the deck, which contains the possible cards to use.
   // It is not necessarily equal to the actual size of the deck defined next,
   // because such deck is filled asyncronously to deckSize by useDeck() custom hook.
@@ -56,7 +56,7 @@ function GameBoard({ setScore }) {
     }
 
     // code for clicking on an unselected card (todo)
-    setScore((s) => s + 1);
+    incrementScore(1);
     setGameState("fetching");
     setSelectedCard(cardId);
 
@@ -84,7 +84,7 @@ function GameBoard({ setScore }) {
 }
 
 GameBoard.propTypes = {
-  setScore: PropTypes.func,
+  incrementScore: PropTypes.func,
 };
 
 export default GameBoard;
