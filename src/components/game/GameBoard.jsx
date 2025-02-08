@@ -33,7 +33,7 @@ function GameBoard({ incrementScore }) {
     const isFetching =
       gameState === "fetching-init" || gameState === "fetching";
 
-    if (isFetching && deckSize === deck.length) {
+    if (isFetching && deckSize === deck.size) {
       setGameState("ready");
     }
   }, [deck, deckSize, gameState]);
@@ -64,7 +64,7 @@ function GameBoard({ incrementScore }) {
   };
 
   // Currently, just to test, just render the full deck
-  const tableCards = deck;
+  const tableCards = [...deck.values()];
 
   return (
     <div

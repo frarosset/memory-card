@@ -13,7 +13,7 @@ function useDeck(requestedDeckSize) {
   // such effect to keep track of the cards to fetch:
   //
   // - if cardsToFetch.current is 0, it means there are no ongoing fetch requests,
-  //   so a new value for it is computed based on requestedDeckSize and deck.length.
+  //   so a new value for it is computed based on requestedDeckSize and deck.size.
   // - then, if cardsToFetch.current is non-zero, a fetch is initialized.
   //
   //   If this is successful, cardsToFetch.current is set to 0 and the deck is updated.
@@ -30,18 +30,18 @@ function useDeck(requestedDeckSize) {
   // development (with StrictMode enabled) or when multiple size updates are issued quickly,
   // also enabling low-end mobile device on DevTools, to simulate slow fetching.
 
-  const [deck, setDeck] = useState([]);
+  const [deck, setDeck] = useState(new Map());
   const cardsToFetch = useRef(requestedDeckSize);
 
   useEffect(() => {
     // console.log("EffectInDeck", {
     //   requestedDeckSize: requestedDeckSize,
-    //   currentDeckSize: deck.length,
+    //   currentDeckSize: deck.size,
     //   cardsToFetch: cardsToFetch.current,
     // });
 
     if (cardsToFetch.current == 0) {
-      cardsToFetch.current = Math.max(requestedDeckSize - deck.length, 0);
+      cardsToFetch.current = Math.max(requestedDeckSize - deck.size, 0);
     }
 
     if (cardsToFetch.current > 0) {
@@ -51,7 +51,10 @@ function useDeck(requestedDeckSize) {
         try {
           const newCards = await fetchCardsData(n, abortController.signal);
           cardsToFetch.current = 0;
-          setDeck(structuredClone([...deck, ...newCards]));
+
+          const copiedDeck = structuredClone(deck);
+          newCards.forEach((card) => copiedDeck.set(card.id, card));
+          setDeck(copiedDeck);
         } catch {
           //console.log(e.message);
         }
