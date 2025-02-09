@@ -3,6 +3,7 @@ import { PropTypes } from "prop-types";
 import Card from "./Card.jsx";
 import useDeck from "./useDeck.js";
 import useSelectedCards from "./useSelectedCards.js";
+import useTableCards from "./useTableCards.js";
 import "../../styles/GameBoard.css";
 
 function GameBoard({ incrementScore }) {
@@ -21,7 +22,8 @@ function GameBoard({ incrementScore }) {
   // Two functions are exposed, both of which require the card id:
   // one can be used to check whether a card has already been selected, and
   // the other to acknowledge that the associated card has been selected.
-  const { isSelectedCard, setSelectedCard } = useSelectedCards();
+  const { isSelectedCard, setSelectedCard, numOfSelectedCards } =
+    useSelectedCards();
 
   // The gameState state keeps track on the phase of the game.
   // Eg, the cards click callbacks are disabled when cards are being fetched. [todo]
@@ -29,14 +31,24 @@ function GameBoard({ incrementScore }) {
   // States: "fetching-init" > "ready" > "fetching" > "ready" >...
   const [gameState, setGameState] = useState("fetching-init");
 
+  // Get the cards shown in the table (this is handled internally by useTableCards)
+  const [tableCards, refreshTableCards] = useTableCards(
+    3,
+    0.5,
+    deck,
+    isSelectedCard,
+    numOfSelectedCards
+  );
+
   useEffect(() => {
     const isFetching =
       gameState === "fetching-init" || gameState === "fetching";
 
     if (isFetching && deckSize === deck.size) {
       setGameState("ready");
+      refreshTableCards();
     }
-  }, [deck, deckSize, gameState]);
+  }, [deck, deckSize, gameState, refreshTableCards]);
 
   // Temporary click callback to test the deck handling of useDeck
   // Event delegation is used: when a click is captured, we have to check
@@ -63,22 +75,31 @@ function GameBoard({ incrementScore }) {
     setDeckSize((x) => x + 1);
   };
 
-  // Currently, just to test, just render the full deck
-  const tableCards = [...deck.values()];
-
   return (
     <div
       className={`gameboard ${gameState}`}
       onClick={gameState !== "fetching" ? clickCallback : undefined}
     >
-      {tableCards.map((card) => (
+      {tableCards.map((cardId) => {
+        const card = deck.get(cardId);
+        return (
+          <Card
+            key={card.id}
+            src={card.url}
+            id={card.id}
+            customClass={isSelectedCard(card.id) ? "selected" : ""}
+          />
+        );
+      })}
+      {/* <p>|||</p> */}
+      {/* {[...deck.values()].map((card) => (
         <Card
           key={card.id}
           src={card.url}
           id={card.id}
           customClass={isSelectedCard(card.id) ? "selected" : ""}
         />
-      ))}
+      ))} */}
     </div>
   );
 }
