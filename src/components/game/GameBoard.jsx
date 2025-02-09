@@ -80,26 +80,17 @@ function GameBoard({ incrementScore }) {
       className={`gameboard ${gameState}`}
       onClick={gameState !== "fetching" ? clickCallback : undefined}
     >
-      {tableCards.map((cardId) => {
+      {tableCards.map((cardId, idx) => {
         const card = deck.get(cardId);
         return (
           <Card
-            key={card.id}
+            key={idx}
             src={card.url}
             id={card.id}
             customClass={isSelectedCard(card.id) ? "selected" : ""}
           />
         );
       })}
-      {/* <p>|||</p> */}
-      {/* {[...deck.values()].map((card) => (
-        <Card
-          key={card.id}
-          src={card.url}
-          id={card.id}
-          customClass={isSelectedCard(card.id) ? "selected" : ""}
-        />
-      ))} */}
     </div>
   );
 }
