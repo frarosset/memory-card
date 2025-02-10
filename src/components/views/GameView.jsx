@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { PropTypes } from "prop-types";
 import GameBoard from "../game/GameBoard.jsx";
 import ScoreBoard from "../game/ScoreBoard.jsx";
+import Title from "../Title.jsx";
 import "../../styles/GameView.css";
 
 function GameView({ bestScore, setBestScore, setGameOverViewCallback }) {
@@ -28,6 +29,7 @@ function GameView({ bestScore, setBestScore, setGameOverViewCallback }) {
   return (
     <div className={"view game-view"}>
       <header>
+        <Title />
         <ScoreBoard
           {...{ score, bestScore }}
           isNewBestScore={isNewBestScore.current}

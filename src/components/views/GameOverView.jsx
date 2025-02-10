@@ -1,9 +1,13 @@
 import { PropTypes } from "prop-types";
+import Title from "../Title.jsx";
 import "../../styles/GameOver.css";
 
 function GameOverView({ score, isNewBestScore, backBtnCallback }) {
   return (
     <div className={"view game-over-view"}>
+      <header>
+        <Title />
+      </header>
       <main>
         <div className="game-over-msg-div card">
           <h2 className="game-over-msg">Game over</h2>
