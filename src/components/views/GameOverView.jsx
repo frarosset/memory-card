@@ -1,5 +1,6 @@
 import { PropTypes } from "prop-types";
 import Title from "../Title.jsx";
+import Card from "../Card.jsx";
 import "../../styles/GameOver.css";
 
 function GameOverView({ score, isNewBestScore, backBtnCallback }) {
@@ -9,7 +10,7 @@ function GameOverView({ score, isNewBestScore, backBtnCallback }) {
         <Title />
       </header>
       <main>
-        <div className="game-over-msg-div card">
+        <Card customClass={`game-over-card`}>
           <h2 className="game-over-msg">Game over</h2>
           <p className="game-over-score-msg">{`You scored ${score}`}</p>
           {isNewBestScore && (
@@ -18,7 +19,7 @@ function GameOverView({ score, isNewBestScore, backBtnCallback }) {
           <button className="game-over-back-btn" onClick={backBtnCallback}>
             BACK
           </button>
-        </div>
+        </Card>
       </main>
     </div>
   );

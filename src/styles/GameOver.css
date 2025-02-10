@@ -1,14 +1,8 @@
-.game-over-msg-div {
+.game-over-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
-  width: auto !important;
-  height: auto !important;
-  aspect-ratio: 1;
-
-  border-radius: var(--card-radius);
 
   padding: var(--card-info-padding);
   background: var(--card-info-bg);
@@ -18,18 +12,18 @@
 }
 
 @starting-style {
-  .game-over-msg-div {
+  .game-over-card {
     opacity: 0;
     transform: scale(1.1) rotate(20deg);
   }
 }
 
-.game-over-msg-div,
-.game-over-msg-div > * {
+.game-over-card,
+.game-over-card > * {
   position: relative;
 }
 
-.game-over-msg-div::before {
+.game-over-card::before {
   content: "";
   position: absolute;
   top: 0;

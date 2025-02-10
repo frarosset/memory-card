@@ -1,0 +1,36 @@
+.game-card {
+  --card-size: calc(
+    (
+        100dvw - var(--gameboard-gap) * (var(--cards-per-row) - 1) -
+          var(--gameboard-padding) * 2 - 4px
+      ) / var(--cards-per-row)
+  );
+
+  width: var(--card-size);
+  height: var(--card-size);
+}
+
+.game-card-face {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--card-radius);
+}
+
+/* style for development only */
+.game-card.selected {
+  opacity: 0.5;
+}
+
+.gameboard.fetching .game-card {
+  transform: rotate(5deg);
+}
+
+@starting-style {
+  .card {
+    opacity: 0;
+    transform: scale(1.1) rotate(10deg);
+  }
+  .gameboard.fetching-init .card {
+    transform: scale(0) rotate(0) !important;
+  }
+}

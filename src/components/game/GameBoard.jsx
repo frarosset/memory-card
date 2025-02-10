@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
-import Card from "./Card.jsx";
+import GameCard from "./GameCard.jsx";
 import useDeck from "./useDeck.js";
 import useSelectedCards from "./useSelectedCards.js";
 import useTableCards from "./useTableCards.js";
@@ -58,7 +58,7 @@ function GameBoard({
   // whether there is a card in the clicked point.
   const clickCallback = (e) => {
     const card = e.target;
-    if (![...card.classList].includes("card")) {
+    if (![...card.classList].includes("game-card-face")) {
       return;
     }
 
@@ -86,7 +86,7 @@ function GameBoard({
       {tableCards.map((cardId, idx) => {
         const card = deck.get(cardId);
         return (
-          <Card
+          <GameCard
             key={idx}
             src={card.url}
             id={card.id}
