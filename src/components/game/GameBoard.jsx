@@ -6,7 +6,10 @@ import useSelectedCards from "./useSelectedCards.js";
 import useTableCards from "./useTableCards.js";
 import "../../styles/GameBoard.css";
 
-function GameBoard({ incrementScore }) {
+function GameBoard({
+  incrementScore,
+  gameOverCallback = () => alert("Game over!"),
+}) {
   // The imposed size of the deck, which contains the possible cards to use.
   // It is not necessarily equal to the actual size of the deck defined next,
   // because such deck is filled asyncronously to deckSize by useDeck() custom hook.
@@ -62,8 +65,8 @@ function GameBoard({ incrementScore }) {
     const cardId = card.getAttribute("data-id");
 
     if (isSelectedCard(cardId)) {
-      // code for clicking on a selected card (todo)
-      alert("Game over!");
+      // code for clicking on a selected card
+      gameOverCallback();
       return;
     }
 
@@ -97,6 +100,7 @@ function GameBoard({ incrementScore }) {
 
 GameBoard.propTypes = {
   incrementScore: PropTypes.func,
+  gameOverCallback: PropTypes.func,
 };
 
 export default GameBoard;
