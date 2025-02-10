@@ -25,10 +25,16 @@ function App() {
       );
     }
     case "game-over": {
+      const backBtnCallback = () =>
+        setCurrentView({
+          name: "game",
+          data: {},
+        });
       return (
         <GameOverView
           score={currentView.data.score}
           isNewBestScore={currentView.data.isNewBestScore}
+          backBtnCallback={backBtnCallback}
         />
       );
     }
