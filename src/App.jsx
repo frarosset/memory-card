@@ -11,14 +11,18 @@ function App() {
   const [bestScore, setBestScore] = useLocalStorage("bestScore", 0);
 
   // currentView defines the view that is currently shown
-  const [currentView, setCurrentView] = useState({
-    name: "game-over",
-    data: { score: 5, isNewBestScore: true },
-  });
+  const [currentView, setCurrentView] = useState({ name: "game", data: {} });
 
   switch (currentView.name) {
     case "game": {
-      return <GameView {...{ bestScore, setBestScore }} />;
+      const setGameOverViewCallback = (score, isNewBestScore) =>
+        setCurrentView({
+          name: "game-over",
+          data: { score, isNewBestScore },
+        });
+      return (
+        <GameView {...{ bestScore, setBestScore, setGameOverViewCallback }} />
+      );
     }
     case "game-over": {
       return (

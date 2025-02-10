@@ -4,10 +4,13 @@ import GameBoard from "../game/GameBoard.jsx";
 import ScoreBoard from "../game/ScoreBoard.jsx";
 import "../../styles/GameView.css";
 
-function GameView({ bestScore, setBestScore }) {
+function GameView({ bestScore, setBestScore, setGameOverViewCallback }) {
   // Game score
   const [score, setScore] = useState(0);
   const isNewBestScore = useRef(false);
+
+  const gameOverCallback = () =>
+    setGameOverViewCallback(score, isNewBestScore.current);
 
   // A function that increment the score state by delta and
   // at the same time checks whether the bestScore is improved
@@ -31,7 +34,10 @@ function GameView({ bestScore, setBestScore }) {
         />
       </header>
       <main>
-        <GameBoard incrementScore={incrementScore} />
+        <GameBoard
+          incrementScore={incrementScore}
+          gameOverCallback={gameOverCallback}
+        />
       </main>
     </div>
   );
@@ -40,6 +46,7 @@ function GameView({ bestScore, setBestScore }) {
 GameView.propTypes = {
   bestScore: PropTypes.number,
   setBestScore: PropTypes.func,
+  setGameOverViewCallback: PropTypes.func,
 };
 
 export default GameView;
