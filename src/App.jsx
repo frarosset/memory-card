@@ -1,3 +1,4 @@
+import { useState } from "react";
 import GameView from "./components/views/GameView.jsx";
 import useLocalStorage from "./customHooks/useLocalStorage.js";
 import "./App.css";
@@ -8,7 +9,14 @@ function App() {
   // The persistence of this state is handled through Local Storage.
   const [bestScore, setBestScore] = useLocalStorage("bestScore", 0);
 
-  return <GameView {...{ bestScore, setBestScore }} />;
+  // currentView defines the view that is currently shown
+  const [currentView, setCurrentView] = useState({ name: "game", data: {} });
+
+  switch (currentView.name) {
+    case "game": {
+      return <GameView {...{ bestScore, setBestScore }} />;
+    }
+  }
 }
 
 export default App;
