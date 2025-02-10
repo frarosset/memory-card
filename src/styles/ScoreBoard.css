@@ -3,7 +3,7 @@
   grid-template-areas:
     ". score-label score-value"
     "bestscore-new bestscore-label bestscore-value";
-  grid-template-columns: max-content max-content minmax(2.5em, max-content);
+  grid-template-columns: max-content max-content minmax(1.5em, max-content);
   gap: 0 0.5em;
   padding: var(--);
 }
@@ -17,6 +17,8 @@
 .scoreboard-bestscore-new {
   grid-area: bestscore-new;
   font-weight: bold;
+  font-family: var(--accent-font);
+  color: var(--accent-color);
 }
 .scoreboard-bestscore-label {
   grid-area: bestscore-label;
