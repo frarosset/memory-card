@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Englebert&family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Englebert&family=Bangers&family=Meow+Script&display=swap");
 
 :root {
   --main-font: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -10,13 +10,17 @@
   --bg: rgb(255, 255, 255, 0.87);
   --accent-color: rgb(220, 110, 0);
 
+  --title-font: "Meow Script";
   --main-font: "Englebert";
   --accent-font: "Bangers";
   --secondary-font: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   --card-bg-image: url("./card-rear.jpg");
 
-  --gameboard-padding: max(3vw, 1em);
+  --page-padding: 2vh max(3vw, 1em);
+  --title-font-size: 5vmin;
+
+  --gameboard-padding: 0px;
   --gameboard-gap: max(2vw, 0.5em);
 
   --cards-per-row: 6;

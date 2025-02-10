@@ -10,6 +10,10 @@ main {
   min-height: 0;
 }
 
+.view {
+  padding: var(--page-padding);
+}
+
 header {
   width: 100%;
 }
