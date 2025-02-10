@@ -95,16 +95,23 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: transparent;
+  border: var(--button-border);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition-duration: 0.5s;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: var(--accent-color);
+  transform: scale(1.05);
 }
-button:focus,
+.game-over-back-btn:active {
+  transform: scale(1);
+}
+button:focus {
+  outline: none;
+}
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px auto var(--accent-color);
 }
 
 /* Customize scrollbars */

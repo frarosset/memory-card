@@ -1,0 +1,82 @@
+.game-over-msg-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: auto !important;
+  height: auto !important;
+  aspect-ratio: 1;
+
+  border-radius: var(--card-radius);
+
+  padding: var(--card-info-padding);
+  background: var(--card-info-bg);
+
+  transform: rotate(-10deg);
+  font-size: var(--card-info-font-size);
+}
+
+@starting-style {
+  .game-over-msg-div {
+    opacity: 0;
+    transform: scale(1.1) rotate(20deg);
+  }
+}
+
+.game-over-msg-div,
+.game-over-msg-div > * {
+  position: relative;
+}
+
+.game-over-msg-div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      closest-side,
+      rgb(255, 255, 255, 0.75) 0%,
+      rgb(255, 255, 255, 0.95) 100%
+    ),
+    var(--card-bg-image);
+  background-position: center;
+  background-size: cover;
+
+  filter: grayscale(75%);
+
+  border-radius: var(--card-radius);
+}
+
+.game-over-msg {
+  font-family: var(--main-font);
+  font-size: 1em;
+  text-shadow: var(--text-shadow);
+  font-weight: bold;
+}
+
+.game-over-score-msg {
+  font-family: var(--main-font);
+  font-size: 0.5em;
+  margin-top: 0.5em;
+}
+.game-over-new-best-score-msg {
+  font-family: var(--accent-font);
+  font-size: 0.5em;
+  margin-top: 0.1em;
+  color: var(--accent-color);
+  text-shadow: var(--text-shadow-dark);
+  letter-spacing: 0.1em;
+}
+
+.game-over-back-btn {
+  font-family: var(--secondary-font);
+  font-size: 0.25em;
+  margin-top: 1.5em;
+  /* padding: 1em; */
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  min-width: 75%;
+}
