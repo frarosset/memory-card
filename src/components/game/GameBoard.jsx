@@ -6,6 +6,8 @@ import useSelectedCards from "./useSelectedCards.js";
 import useTableCards from "./useTableCards.js";
 import "../../styles/GameBoard.css";
 
+const delayFetchingToReadyInMs = 1000;
+
 function GameBoard({
   incrementScore,
   gameOverCallback = () => alert("Game over!"),
@@ -44,12 +46,17 @@ function GameBoard({
   );
 
   useEffect(() => {
-    const isFetching =
-      gameState === "fetching-init" || gameState === "fetching";
+    const isInit = gameState === "fetching-init";
+    const isFetching = isInit || gameState === "fetching";
 
     if (isFetching && deckSize === deck.size) {
-      setGameState("ready");
-      refreshTableCards();
+      setTimeout(
+        () => {
+          setGameState(isInit ? "ready-init" : "ready");
+          refreshTableCards();
+        },
+        isInit ? 0 : delayFetchingToReadyInMs
+      );
     }
   }, [deck, deckSize, gameState, refreshTableCards]);
 
