@@ -1,3 +1,5 @@
+/* Animations are based on: https://auroratide.com/posts/realistic-flip-animation/ */
+
 .card {
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
@@ -7,22 +9,28 @@
   aspect-ratio: 1;
   position: relative;
 
-  transition-property: transform opacity;
-  transition-duration: var(--card-transition-duration);
-  transition-timing-function: ease;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+
+  animation-duration: var(--card-transition-duration);
+  animation-fill-mode: both;
+  animation-timing-function: linear;
+  animation-name: flip-to-front;
 }
 
-@starting-style {
-  .card {
-    opacity: 0;
-    transform: scale(1.1) rotate(10deg);
-  }
+/* Apply some perspective to the parent element to allow lifting cards up effect */
+*:has(> .card) {
+  perspective: var(--card-perspective);
+  perspective-origin: center;
 }
 
 .card-face {
   border-radius: inherit;
   width: 100%;
   height: 100%;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .card-rear {
@@ -34,5 +42,53 @@
   top: 0;
   left: 0;
 
-  visibility: hidden; /* temporary code to hide the back face */
+  transform: rotateY(-180deg);
+}
+
+/* animations */
+
+@keyframes flip-to-front-ini {
+  0% {
+    transform: rotate(10deg) translateZ(var(--card-perspective))
+      rotateY(-180deg);
+  }
+  100% {
+    transform: translateZ(0em) rotateY(-360deg);
+  }
+}
+
+@keyframes flip-to-front-game-over {
+  0% {
+    transform: rotate(10deg) translateZ(0em) rotateY(-180deg);
+  }
+  50% {
+    transform: rotate(0deg) translateZ(var(--card-flip-height)) rotateY(-270deg);
+  }
+  100% {
+    transform: rotate(-20deg) translateZ(0em) rotateY(-360deg);
+  }
+}
+
+@keyframes flip-to-front {
+  0% {
+    transform: translateZ(0em) rotateY(-180deg);
+  }
+  50% {
+    transform: translateZ(var(--card-flip-height)) rotateY(-270deg);
+  }
+  100% {
+    transform: translateZ(0em) rotateY(-360deg);
+  }
+}
+
+@keyframes flip-to-back {
+  0% {
+    transform: translateZ(0em) rotateY(0deg);
+  }
+  50% {
+    transform: translateZ(var(--card-flip-height)) rotateY(-90deg);
+  }
+  100% {
+    transform: translateZ(0em) rotateY(-180deg);
+  }
 }

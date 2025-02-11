@@ -35,5 +35,8 @@
   --card-info-font-size: max(10vmin, 18px);
   --card-info-bg: white;
 
+  --card-flip-height: 18em;
+  --card-perspective: 100em;
+
   --button-border: 2px solid black;
 }

@@ -1,6 +1,9 @@
+/* Animations are based on: https://auroratide.com/posts/realistic-flip-animation/ */
+
 .game-over-card {
   transform: rotate(-10deg);
   font-size: var(--card-info-font-size);
+  animation-name: flip-to-front-game-over;
 }
 
 .game-over-card .card-front {
@@ -11,13 +14,6 @@
 
   padding: var(--card-info-padding);
   background: var(--card-info-bg);
-}
-
-@starting-style {
-  .game-over-card {
-    opacity: 0;
-    transform: scale(1.1) rotate(20deg);
-  }
 }
 
 /* set background of front face (with some transparency effects) */
