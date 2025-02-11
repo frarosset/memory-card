@@ -1,4 +1,9 @@
 .game-over-card {
+  transform: rotate(-10deg);
+  font-size: var(--card-info-font-size);
+}
+
+.game-over-card .card-front {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -6,9 +11,6 @@
 
   padding: var(--card-info-padding);
   background: var(--card-info-bg);
-
-  transform: rotate(-10deg);
-  font-size: var(--card-info-font-size);
 }
 
 @starting-style {
@@ -18,12 +20,14 @@
   }
 }
 
-.game-over-card,
-.game-over-card > * {
+/* set background of front face (with some transparency effects) */
+
+.game-over-card .card-front,
+.game-over-card .card-front > * {
   position: relative;
 }
 
-.game-over-card::before {
+.game-over-card .card-front::before {
   content: "";
   position: absolute;
   top: 0;
@@ -41,8 +45,10 @@
 
   filter: grayscale(75%);
 
-  border-radius: var(--card-radius);
+  border-radius: inherit;
 }
+
+/* Front face style */
 
 .game-over-msg {
   font-family: var(--main-font);

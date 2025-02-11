@@ -58,7 +58,7 @@ function GameBoard({
   // whether there is a card in the clicked point.
   const clickCallback = (e) => {
     const card = e.target;
-    if (![...card.classList].includes("game-card-face")) {
+    if (![...card.classList].includes("game-card-img")) {
       return;
     }
 

@@ -10,14 +10,14 @@
   height: var(--card-size);
 }
 
-.game-card-face {
+.game-card-img {
   width: 100%;
   height: 100%;
-  border-radius: var(--card-radius);
+  border-radius: inherit;
 }
 
 /* style for development only */
-.game-card.selected {
+.game-card.selected .card-front {
   opacity: 0.5;
 }
 
