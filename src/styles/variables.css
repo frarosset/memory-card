@@ -25,7 +25,7 @@
 
   --cards-per-row: 6;
   --card-radius: 0.5vw;
-  --card-shadow: 0 1vw 1vw black;
+  --card-shadow: 0.2vmin 0.3vmin 1vmin black;
   --card-transition-duration: 1s;
 
   --text-shadow: 0 0.05em 0.1em grey;

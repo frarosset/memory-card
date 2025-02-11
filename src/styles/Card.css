@@ -2,7 +2,6 @@
 
 .card {
   border-radius: var(--card-radius);
-  box-shadow: var(--card-shadow);
 
   width: auto;
   height: auto;
@@ -22,6 +21,7 @@
 *:has(> .card) {
   perspective: var(--card-perspective);
   perspective-origin: center;
+  filter: drop-shadow(var(--card-shadow));
 }
 
 .card-face {
