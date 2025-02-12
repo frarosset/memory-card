@@ -28,6 +28,8 @@
   --card-shadow: 0.2vmin 0.3vmin 1vmin black;
   --card-transition-duration: 1s;
   --card-hover-shadow-color: rgb(0, 0, 0, 0.5);
+  --card-hover-text-translate-z: -10em;
+  --card-hover-button-translate-z: 50em;
   /* The following are set and unset via JS
   --card-hover-scale
   --card-hover-shadow-size

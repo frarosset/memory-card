@@ -4,6 +4,7 @@
   transform: rotate(-10deg);
   font-size: var(--card-info-font-size);
   animation-name: flip-to-front-game-over;
+  box-shadow: none !important;
 }
 
 .game-over-card .card-front {
@@ -75,4 +76,26 @@
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
   min-width: 75%;
+}
+
+.game-over-card .card-front {
+  perspective: var(--card-perspective);
+  filter: drop-shadow(--card-shadow);
+}
+
+.game-over-card .card-front > * {
+  transition: transform 1s;
+}
+
+.game-over-card .card-front:hover .game-over-msg {
+  transform: translateZ(var(--card-hover-text-translate-z));
+}
+.game-over-card .card-front:hover .game-over-score-msg {
+  transform: translateZ(var(--card-hover-text-translate-z));
+}
+.game-over-card .card-front:hover .game-over-new-best-score-msg {
+  transform: translateZ(var(--card-hover-text-translate-z));
+}
+.game-over-card .card-front:hover .game-over-back-btn {
+  transform: translateZ(var(--card-hover-button-translate-z));
 }
