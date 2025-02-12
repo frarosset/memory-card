@@ -27,6 +27,13 @@
   --card-radius: 0.5vw;
   --card-shadow: 0.2vmin 0.3vmin 1vmin black;
   --card-transition-duration: 1s;
+  --card-hover-shadow-color: rgb(0, 0, 0, 0.5);
+  /* The following are set and unset via JS
+  --card-hover-scale
+  --card-hover-shadow-size
+  --card-hover-rotate3d-x
+  --card-hover-rotate3d-y
+  --card-hover-rotate3d-deg */
 
   --text-shadow: 0 0.05em 0.1em grey;
   --text-shadow-dark: 0 0.05em 0.1em black;

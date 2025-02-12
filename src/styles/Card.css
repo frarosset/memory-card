@@ -15,6 +15,8 @@
   animation-fill-mode: both;
   animation-timing-function: linear;
   animation-name: flip-to-front;
+
+  touch-action: none;
 }
 
 /* Apply some perspective to the parent element to allow lifting cards up effect */
@@ -46,6 +48,24 @@
 }
 
 /* animations */
+/* order in transform: scale rotate translate-z  rotate-y rotate-3d */
+/* Note that animation-fill-mode: both; makes the animation states persist 
+when the end of the animation is reached. The changing while hovering is 
+applyed by changing some CSS variables (via JS). A default value is set 
+for such css variables. */
+
+.card:hover {
+  box-shadow: 0 0 var(--card-hover-shadow-size, 0)
+    var(--card-hover-shadow-color);
+}
+
+/* reset the styles on active status */
+.card:active {
+  --card-hover-scale: 1 !important;
+  --card-hover-rotate3d-x: 0 !important;
+  --card-hover-rotate3d-y: 0 !important;
+  --card-hover-rotate3d-deg: 0deg !important;
+}
 
 @keyframes flip-to-front-ini {
   0% {
@@ -53,7 +73,13 @@
       rotateY(-180deg);
   }
   100% {
-    transform: translateZ(0em) rotateY(-360deg);
+    transform: scale(var(--card-hover-scale, 1)) translateZ(0) rotateY(-360deg)
+      rotate3d(
+        var(--card-hover-rotate3d-x, 0),
+        var(--card-hover-rotate3d-y, 0),
+        0,
+        var(--card-hover-rotate3d-deg, 0deg)
+      );
   }
 }
 
@@ -65,7 +91,13 @@
     transform: rotate(0deg) translateZ(var(--card-flip-height)) rotateY(-270deg);
   }
   100% {
-    transform: rotate(-20deg) translateZ(0em) rotateY(-360deg);
+    transform: rotate(-20deg) translateZ(0em) rotateY(-360deg)
+      rotate3d(
+        var(--card-hover-rotate3d-x, 0),
+        var(--card-hover-rotate3d-y, 0),
+        0,
+        var(--card-hover-rotate3d-deg, 0deg)
+      );
   }
 }
 
@@ -77,7 +109,14 @@
     transform: translateZ(var(--card-flip-height)) rotateY(-270deg);
   }
   100% {
-    transform: translateZ(0em) rotateY(-360deg);
+    transform: scale(var(--card-hover-scale, 1)) translateZ(0em)
+      rotateY(-360deg)
+      rotate3d(
+        var(--card-hover-rotate3d-x, 0),
+        var(--card-hover-rotate3d-y, 0),
+        0,
+        var(--card-hover-rotate3d-deg, 0deg)
+      );
   }
 }
 
