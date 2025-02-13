@@ -6,7 +6,7 @@ import "../../styles/GameOver.css";
 function GameOverView({
   score,
   isNewBestScore,
-  backBtnCallback,
+  playGameCallback,
   setHomeViewCallback,
 }) {
   return (
@@ -16,14 +16,21 @@ function GameOverView({
       </header>
       <main>
         <Card customClass={`game-over-card`}>
-          <h2 className="game-over-msg">Game over</h2>
-          <p className="game-over-score-msg">{`You scored ${score}`}</p>
-          {isNewBestScore && (
-            <p className="game-over-new-best-score-msg">NEW BEST SCORE!</p>
-          )}
-          <button className="game-over-back-btn" onClick={backBtnCallback}>
-            BACK
-          </button>
+          <h2 className="game-over-msg">GAME OVER</h2>
+          <div className="game-over-score">
+            <p className="game-over-score-msg">{`You scored ${score}`}</p>
+            {isNewBestScore && (
+              <p className="game-over-new-best-score-msg">NEW BEST SCORE!</p>
+            )}
+          </div>
+          <div className="game-over-btns">
+            <button className="game-over-btn" onClick={playGameCallback}>
+              RETRY
+            </button>
+            <button className="game-over-btn" onClick={setHomeViewCallback}>
+              HOME
+            </button>
+          </div>
         </Card>
       </main>
     </div>
@@ -33,7 +40,7 @@ function GameOverView({
 GameOverView.propTypes = {
   score: PropTypes.number,
   isNewBestScore: PropTypes.bool,
-  backBtnCallback: PropTypes.func,
+  playGameCallback: PropTypes.func,
   setHomeViewCallback: PropTypes.func,
 };
 

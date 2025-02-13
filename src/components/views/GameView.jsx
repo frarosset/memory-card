@@ -17,7 +17,7 @@ function GameView({
   const isNewBestScore = useRef(false);
 
   const gameOverCallback = () =>
-    setGameOverViewCallback(score, isNewBestScore.current);
+    setGameOverViewCallback(score, isNewBestScore.current, gameSettings.level);
 
   // A function that increment the score state by delta and
   // at the same time checks whether the bestScore is improved

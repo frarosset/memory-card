@@ -21,14 +21,20 @@ function App() {
       data: {},
     });
 
+  const setPlayGameCallback = (level) => () =>
+    setCurrentView({
+      name: "game",
+      data: { level },
+    });
+
   switch (currentView.name) {
     case "game": {
       // data: level
 
-      const setGameOverViewCallback = (score, isNewBestScore) =>
+      const setGameOverViewCallback = (score, isNewBestScore, level) =>
         setCurrentView({
           name: "game-over",
-          data: { score, isNewBestScore },
+          data: { score, isNewBestScore, level },
         });
 
       const gameSettings = levelsSettings[currentView.data.level];
@@ -52,19 +58,14 @@ function App() {
         <GameOverView
           score={currentView.data.score}
           isNewBestScore={currentView.data.isNewBestScore}
-          backBtnCallback={setHomeViewCallback}
-          {...{ setHomeViewCallback }}
+          playGameCallback={setPlayGameCallback(currentView.data.level)}
+          setHomeViewCallback={setHomeViewCallback}
         />
       );
     }
     case "home": {
       //data: [none]
 
-      const setPlayGameCallback = (level) => () =>
-        setCurrentView({
-          name: "game",
-          data: { level },
-        });
       const gameLevels = Object.entries(levelsSettings).map(([key, value]) => ({
         key: key,
         label: value.label,

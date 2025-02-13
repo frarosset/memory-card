@@ -1,6 +1,7 @@
 {
   "easy": {
     "label": "Easy",
+    "level": "easy",
     "initialDeckSize": 6,
     "incrementDeckSize": 1,
     "tableSize": 3,
@@ -8,6 +9,7 @@
   },
   "medium": {
     "label": "Medium",
+    "level": "medium",
     "initialDeckSize": 12,
     "incrementDeckSize": 1,
     "tableSize": 6,
@@ -15,6 +17,7 @@
   },
   "hard": {
     "label": "Hard",
+    "level": "hard",
     "initialDeckSize": 24,
     "incrementDeckSize": 1,
     "tableSize": 12,
