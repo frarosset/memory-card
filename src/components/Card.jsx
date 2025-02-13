@@ -10,6 +10,7 @@ function Card({ children, customClass, customAttributes }) {
     >
       <div className="card-rear card-face"></div>
       <div className="card-front card-face">{children}</div>
+      <div className="card-glow"></div>
     </div>
   );
 }
@@ -52,6 +53,9 @@ function onPointerEnterCallback(e) {
       "--card-hover-rotate3d-deg",
       `${Math.log(distance) * 2}deg`
     );
+    card.style.setProperty("--card-hover-glow-x", `${leftX}px`);
+    card.style.setProperty("--card-hover-glow-y", `${topY}px`);
+    card.style.setProperty("--card-hover-glow-color", "#ffffff55");
   };
 
   // pointerLeaveCallback
@@ -65,6 +69,9 @@ function onPointerEnterCallback(e) {
     card.style.setProperty("--card-hover-rotate3d-x", "");
     card.style.setProperty("--card-hover-rotate3d-y", "");
     card.style.setProperty("--card-hover-rotate3d-deg", "");
+    card.style.setProperty("--card-hover-glow-x", "");
+    card.style.setProperty("--card-hover-glow-y", "");
+    card.style.setProperty("--card-hover-glow-color", "");
   };
 
   card.addEventListener("pointermove", rotateToPointer);

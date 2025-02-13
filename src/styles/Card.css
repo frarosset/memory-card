@@ -67,6 +67,22 @@ for such css variables. */
   --card-hover-rotate3d-deg: 0deg !important;
 }
 
+/* Glowing effect based on: https://codepen.io/markmiro/pen/wbqMPa */
+.card-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+
+  background-image: radial-gradient(
+    circle at var(--card-hover-glow-x, 50%) var(--card-hover-glow-y, -20%),
+    var(--card-hover-glow-color, #ffffff22),
+    #0000000f
+  );
+  pointer-events: none;
+}
+
 @keyframes flip-to-front-ini {
   0% {
     transform: rotate(10deg) translateZ(var(--card-perspective))
