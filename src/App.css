@@ -12,6 +12,7 @@ main {
 
 .view {
   padding: var(--page-padding);
+  gap: var(--page-gap);
 }
 
 header {

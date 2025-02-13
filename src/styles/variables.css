@@ -18,6 +18,7 @@
   --card-bg-image: url("./card-rear.jpg");
 
   --page-padding: 2vh max(3vw, 1em);
+  --page-gap: 2vh;
   --title-font-size: 5vmin;
 
   --gameboard-padding: 0px;
