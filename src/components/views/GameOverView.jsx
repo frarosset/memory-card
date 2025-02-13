@@ -3,11 +3,16 @@ import Title from "../Title.jsx";
 import Card from "../Card.jsx";
 import "../../styles/GameOver.css";
 
-function GameOverView({ score, isNewBestScore, backBtnCallback }) {
+function GameOverView({
+  score,
+  isNewBestScore,
+  backBtnCallback,
+  setHomeViewCallback,
+}) {
   return (
     <div className={"view game-over-view"}>
       <header>
-        <Title />
+        <Title onClickCallback={setHomeViewCallback} />
       </header>
       <main>
         <Card customClass={`game-over-card`}>
@@ -29,6 +34,7 @@ GameOverView.propTypes = {
   score: PropTypes.number,
   isNewBestScore: PropTypes.bool,
   backBtnCallback: PropTypes.func,
+  setHomeViewCallback: PropTypes.func,
 };
 
 export default GameOverView;

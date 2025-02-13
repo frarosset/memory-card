@@ -10,6 +10,7 @@ function GameView({
   setBestScore,
   setGameOverViewCallback,
   gameSettings,
+  setHomeViewCallback,
 }) {
   // Game score
   const [score, setScore] = useState(0);
@@ -34,7 +35,7 @@ function GameView({
   return (
     <div className={"view game-view"}>
       <header>
-        <Title />
+        <Title onClickCallback={setHomeViewCallback} />
         <ScoreBoard
           {...{ score, bestScore }}
           isNewBestScore={isNewBestScore.current}
@@ -58,6 +59,7 @@ GameView.propTypes = {
   gameSettings: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   ),
+  setHomeViewCallback: PropTypes.func,
 };
 
 export default GameView;
