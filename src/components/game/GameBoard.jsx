@@ -10,12 +10,16 @@ const delayFetchingToReadyInMs = 1000;
 
 function GameBoard({
   incrementScore,
+  initialDeckSize = 6,
+  incrementDeckSize = 1,
+  tableSize = 3,
+  selectedCardsFractInTable = 0.5,
   gameOverCallback = () => alert("Game over!"),
 }) {
   // The imposed size of the deck, which contains the possible cards to use.
   // It is not necessarily equal to the actual size of the deck defined next,
   // because such deck is filled asyncronously to deckSize by useDeck() custom hook.
-  const [deckSize, setDeckSize] = useState(4);
+  const [deckSize, setDeckSize] = useState(initialDeckSize);
 
   // The deck is handled internally by the useDeck custom hook.
   // The returned deck should not be modified.
@@ -38,8 +42,8 @@ function GameBoard({
 
   // Get the cards shown in the table (this is handled internally by useTableCards)
   const [tableCards, refreshTableCards] = useTableCards(
-    3,
-    0.5,
+    tableSize,
+    selectedCardsFractInTable,
     deck,
     isSelectedCard,
     numOfSelectedCards
@@ -81,7 +85,7 @@ function GameBoard({
     setGameState("fetching");
     setSelectedCard(cardId);
 
-    setDeckSize((x) => x + 1);
+    setDeckSize((x) => x + incrementDeckSize);
   };
 
   return (
@@ -107,6 +111,10 @@ function GameBoard({
 GameBoard.propTypes = {
   incrementScore: PropTypes.func,
   gameOverCallback: PropTypes.func,
+  initialDeckSize: PropTypes.number,
+  incrementDeckSize: PropTypes.number,
+  tableSize: PropTypes.number,
+  selectedCardsFractInTable: PropTypes.number,
 };
 
 export default GameBoard;
