@@ -3,6 +3,7 @@ import GameView from "./components/views/GameView.jsx";
 import GameOverView from "./components/views/GameOverView.jsx";
 import useLocalStorage from "./customHooks/useLocalStorage.js";
 import "./App.css";
+import levelsSettings from "./data/levelsSettings.json";
 
 function App() {
   // bestScore is the best scored achieved. It is independent from the
@@ -13,6 +14,8 @@ function App() {
   // currentView defines the view that is currently shown
   const [currentView, setCurrentView] = useState({ name: "game", data: {} });
 
+  const currentLevel = "hard";
+
   switch (currentView.name) {
     case "game": {
       const setGameOverViewCallback = (score, isNewBestScore) =>
@@ -22,12 +25,7 @@ function App() {
         });
 
       // Sample object with game settings
-      const gameSettings = {
-        initialDeckSize: 12,
-        incrementDeckSize: 2,
-        tableSize: 6,
-        selectedCardsFractInTable: 0.8,
-      };
+      const gameSettings = levelsSettings[currentLevel];
 
       return (
         <GameView

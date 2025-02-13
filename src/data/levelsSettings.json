@@ -1,0 +1,20 @@
+{
+  "easy": {
+    "initialDeckSize": 6,
+    "incrementDeckSize": 1,
+    "tableSize": 3,
+    "selectedCardsFractInTable": 0.4
+  },
+  "medium": {
+    "initialDeckSize": 12,
+    "incrementDeckSize": 1,
+    "tableSize": 6,
+    "selectedCardsFractInTable": 0.6
+  },
+  "hard": {
+    "initialDeckSize": 24,
+    "incrementDeckSize": 1,
+    "tableSize": 12,
+    "selectedCardsFractInTable": 0.8
+  }
+}
