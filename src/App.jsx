@@ -20,8 +20,24 @@ function App() {
           name: "game-over",
           data: { score, isNewBestScore },
         });
+
+      // Sample object with game settings
+      const gameSettings = {
+        initialDeckSize: 12,
+        incrementDeckSize: 2,
+        tableSize: 6,
+        selectedCardsFractInTable: 0.8,
+      };
+
       return (
-        <GameView {...{ bestScore, setBestScore, setGameOverViewCallback }} />
+        <GameView
+          {...{
+            bestScore,
+            setBestScore,
+            setGameOverViewCallback,
+            gameSettings,
+          }}
+        />
       );
     }
     case "game-over": {

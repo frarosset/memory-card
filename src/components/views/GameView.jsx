@@ -5,7 +5,12 @@ import ScoreBoard from "../game/ScoreBoard.jsx";
 import Title from "../Title.jsx";
 import "../../styles/GameView.css";
 
-function GameView({ bestScore, setBestScore, setGameOverViewCallback }) {
+function GameView({
+  bestScore,
+  setBestScore,
+  setGameOverViewCallback,
+  gameSettings,
+}) {
   // Game score
   const [score, setScore] = useState(0);
   const isNewBestScore = useRef(false);
@@ -39,6 +44,7 @@ function GameView({ bestScore, setBestScore, setGameOverViewCallback }) {
         <GameBoard
           incrementScore={incrementScore}
           gameOverCallback={gameOverCallback}
+          {...{ ...gameSettings }}
         />
       </main>
     </div>
@@ -49,6 +55,7 @@ GameView.propTypes = {
   bestScore: PropTypes.number,
   setBestScore: PropTypes.func,
   setGameOverViewCallback: PropTypes.func,
+  gameSettings: PropTypes.objectOf(PropTypes.number),
 };
 
 export default GameView;
