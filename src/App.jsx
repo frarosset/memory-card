@@ -15,18 +15,17 @@ function App() {
   // currentView defines the view that is currently shown
   const [currentView, setCurrentView] = useState({ name: "home", data: {} });
 
-  const currentLevel = "hard";
-
   switch (currentView.name) {
     case "game": {
+      // data: level
+
       const setGameOverViewCallback = (score, isNewBestScore) =>
         setCurrentView({
           name: "game-over",
           data: { score, isNewBestScore },
         });
 
-      // Sample object with game settings
-      const gameSettings = levelsSettings[currentLevel];
+      const gameSettings = levelsSettings[currentView.data.level];
 
       return (
         <GameView
@@ -40,6 +39,8 @@ function App() {
       );
     }
     case "game-over": {
+      // data: score, isNewBestScore
+
       const backBtnCallback = () =>
         setCurrentView({
           name: "game",
@@ -54,12 +55,24 @@ function App() {
       );
     }
     case "home": {
+      //data: [none]
+
+      const setPlayGameCallback = (level) => () =>
+        setCurrentView({
+          name: "game",
+          data: { level },
+        });
       const gameLevels = Object.entries(levelsSettings).map(([key, value]) => ({
         key: key,
         label: value.label,
       }));
 
-      return <HomeView gameLevels={gameLevels} />;
+      return (
+        <HomeView
+          gameLevels={gameLevels}
+          setPlayGameCallback={setPlayGameCallback}
+        />
+      );
     }
   }
 }
