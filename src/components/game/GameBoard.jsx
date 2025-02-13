@@ -64,12 +64,11 @@ function GameBoard({
   // Event delegation is used: when a click is captured, we have to check
   // whether there is a card in the clicked point.
   const clickCallback = (e) => {
-    const card = e.target;
-    if (![...card.classList].includes("game-card-img")) {
-      return;
-    }
+    const card = e.target.closest(".game-card");
+    if (card == null) return;
 
     const cardId = card.getAttribute("data-id");
+    if (!cardId) return;
 
     if (isSelectedCard(cardId)) {
       // code for clicking on a selected card

@@ -4,8 +4,11 @@ import "../../styles/GameCard.css";
 
 function GameCard({ src, alt, id, customClass }) {
   return (
-    <Card customClass={`game-card ${customClass}`}>
-      <img className="game-card-img" src={src} alt={alt} data-id={id} />
+    <Card
+      customClass={`game-card ${customClass}`}
+      customAttributes={{ "data-id": id }}
+    >
+      <img className="game-card-img" src={src} alt={alt} />
     </Card>
   );
 }
