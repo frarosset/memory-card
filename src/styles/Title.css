@@ -5,4 +5,44 @@
   font-family: var(--title-font);
   text-shadow: var(--text-shadow);
   font-weight: bold;
+
+  perspective-origin: left;
+  perspective: 100em;
+}
+
+.title:hover .title-letter {
+  --shadow-hover-color: rgb(0, 0, 0, 0.6);
+  text-shadow: var(--text-shadow), 0.5px 0.5px var(--shadow-hover-color),
+    0.25px 0.25px var(--shadow-hover-color);
+  animation: title-animation 2s infinite;
+
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+
+  display: inline-block;
+}
+
+.title:hover .title-letter:nth-child(4n + 1) {
+  animation-delay: 0s;
+}
+.title:hover .title-letter:nth-child(4n + 2) {
+  animation-delay: 0.2s;
+}
+.title:hover .title-letter:nth-child(4n + 3) {
+  animation-delay: 0.4s;
+}
+.title:hover .title-letter:nth-child(4n) {
+  animation-delay: 0.6s;
+}
+
+@keyframes title-animation {
+  0% {
+    transform: translateZ(0) translateY(0.01em);
+  }
+  50% {
+    transform: translateZ(0.8em);
+  }
+  100% {
+    transform: translateZ(0) translateY(0.01em);
+  }
 }
