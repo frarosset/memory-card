@@ -55,7 +55,9 @@ GameView.propTypes = {
   bestScore: PropTypes.number,
   setBestScore: PropTypes.func,
   setGameOverViewCallback: PropTypes.func,
-  gameSettings: PropTypes.objectOf(PropTypes.number),
+  gameSettings: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  ),
 };
 
 export default GameView;

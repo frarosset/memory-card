@@ -1,6 +1,7 @@
 import { useState } from "react";
 import GameView from "./components/views/GameView.jsx";
 import GameOverView from "./components/views/GameOverView.jsx";
+import HomeView from "./components/views/HomeView.jsx";
 import useLocalStorage from "./customHooks/useLocalStorage.js";
 import "./App.css";
 import levelsSettings from "./data/levelsSettings.json";
@@ -12,7 +13,7 @@ function App() {
   const [bestScore, setBestScore] = useLocalStorage("bestScore", 0);
 
   // currentView defines the view that is currently shown
-  const [currentView, setCurrentView] = useState({ name: "game", data: {} });
+  const [currentView, setCurrentView] = useState({ name: "home", data: {} });
 
   const currentLevel = "hard";
 
@@ -51,6 +52,14 @@ function App() {
           backBtnCallback={backBtnCallback}
         />
       );
+    }
+    case "home": {
+      const gameLevels = Object.entries(levelsSettings).map(([key, value]) => ({
+        key: key,
+        label: value.label,
+      }));
+
+      return <HomeView gameLevels={gameLevels} />;
     }
   }
 }
