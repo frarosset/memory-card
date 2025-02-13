@@ -75,6 +75,8 @@ for such css variables. */
   left: 0;
   top: 0;
 
+  border-radius: inherit;
+
   background-image: radial-gradient(
     circle at var(--card-hover-glow-x, 50%) var(--card-hover-glow-y, -20%),
     var(--card-hover-glow-color, #ffffff22),

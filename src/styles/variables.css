@@ -29,8 +29,11 @@
   --card-shadow: 0.2vmin 0.3vmin 1vmin black;
   --card-transition-duration: 1s;
   --card-hover-shadow-color: rgb(0, 0, 0, 0.5);
-  --card-hover-text-translate-z: -10em;
-  --card-hover-button-translate-z: 50em;
+  --card-hover-text-translate-z: -5em;
+  --card-hover-button-translate-z: 10em;
+  --card-hover-text-scale: 0.8;
+  --card-hover-button-scale: 1.1;
+  --card-hover-button-no-focus-scale: 0.9;
   /* The following are set and unset via JS
   --card-hover-scale
   --card-hover-shadow-size
@@ -39,7 +42,9 @@
   --card-hover-rotate3d-deg
   --card-hover-glow-x
   --card-hover-glow-y
-  --card-hover-glow-color */
+  --card-hover-glow-color 
+  --card-hover-perspective-x
+  --card-hover-perspective-y */
 
   --text-shadow: 0 0.05em 0.1em grey;
   --text-shadow-dark: 0 0.05em 0.1em black;

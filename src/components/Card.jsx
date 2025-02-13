@@ -56,6 +56,14 @@ function onPointerEnterCallback(e) {
     card.style.setProperty("--card-hover-glow-x", `${leftX}px`);
     card.style.setProperty("--card-hover-glow-y", `${topY}px`);
     card.style.setProperty("--card-hover-glow-color", "#ffffff55");
+    card.style.setProperty(
+      "--card-hover-perspective-x",
+      `${(leftX / bounds.width) * 100}%`
+    );
+    card.style.setProperty(
+      "--card-hover-perspective-y",
+      `${(topY / bounds.height) * 100}%`
+    );
   };
 
   // pointerLeaveCallback
@@ -72,6 +80,8 @@ function onPointerEnterCallback(e) {
     card.style.setProperty("--card-hover-glow-x", "");
     card.style.setProperty("--card-hover-glow-y", "");
     card.style.setProperty("--card-hover-glow-color", "");
+    card.style.setProperty("--card-hover-perspective-x", "");
+    card.style.setProperty("--card-hover-perspective-y", "");
   };
 
   card.addEventListener("pointermove", rotateToPointer);

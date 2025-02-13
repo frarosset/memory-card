@@ -17,6 +17,10 @@
   background: var(--card-info-bg);
 }
 
+.game-over-card .card-front > * {
+  transition: transform 1s;
+}
+
 /* set background of front face (with some transparency effects) */
 
 .game-over-card .card-front,
@@ -61,41 +65,58 @@
 }
 .game-over-new-best-score-msg {
   font-family: var(--accent-font);
-  font-size: 0.5em;
+  font-size: 0.4em;
   margin-top: 0.1em;
   color: var(--accent-color);
   text-shadow: var(--text-shadow-dark);
   letter-spacing: 0.1em;
 }
 
-.game-over-back-btn {
+.game-over-card .game-over-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-over-btns {
   font-family: var(--secondary-font);
   font-size: 0.25em;
   margin-top: 1.5em;
   /* padding: 1em; */
+  min-width: 75%;
+  display: flex;
+  gap: 1em;
+}
+.game-over-btn {
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
-  min-width: 75%;
+  flex: 1;
+  min-width: 0;
 }
 
 .game-over-card .card-front {
   perspective: var(--card-perspective);
+  perspective-origin: bottom;
   filter: drop-shadow(--card-shadow);
 }
 
-.game-over-card .card-front > * {
-  transition: transform 1s;
+.game-over-card .card-front:hover .game-over-msg,
+.game-over-card .card-front:hover .game-over-score {
+  transform: translateZ(var(--card-hover-text-translate-z))
+    scale(var(--card-hover-text-scale));
+}
+.game-over-card .card-front:hover .game-over-btns {
+  transform: translateZ(var(--card-hover-button-translate-z))
+    scale(var(--card-hover-button-scale));
 }
 
-.game-over-card .card-front:hover .game-over-msg {
-  transform: translateZ(var(--card-hover-text-translate-z));
+.game-over-card .card-front:hover {
+  perspective-origin: var(--card-hover-perspective-x)
+    var(--card-hover-perspective-y);
 }
-.game-over-card .card-front:hover .game-over-score-msg {
-  transform: translateZ(var(--card-hover-text-translate-z));
-}
-.game-over-card .card-front:hover .game-over-new-best-score-msg {
-  transform: translateZ(var(--card-hover-text-translate-z));
-}
-.game-over-card .card-front:hover .game-over-back-btn {
-  transform: translateZ(var(--card-hover-button-translate-z));
+
+.game-over-card .card-front:hover .game-over-btn:hover + .game-over-btn,
+.game-over-card .card-front:hover .game-over-btn:has(+ .game-over-btn:hover) {
+  transform: scale(var(--card-hover-button-no-focus-scale));
 }
