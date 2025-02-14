@@ -4,7 +4,7 @@
   --card-size: calc(
     (
         100dvw - var(--gameboard-gap) * (var(--cards-per-row) - 1) -
-          var(--gameboard-padding) * 2 - 4px
+          (var(--gameboard-padding) + var(--page-padding-w)) * 2 - 4px
       ) / var(--cards-per-row)
   );
 
