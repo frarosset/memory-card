@@ -4,7 +4,8 @@
     "level": "easy",
     "initialDeckSize": 6,
     "incrementDeckSize": 1,
-    "tableSize": 3,
+    "initialTableSize": 3,
+    "incrementTableSize": 0,
     "selectedCardsFractInTable": 0.4
   },
   "medium": {
@@ -12,7 +13,8 @@
     "level": "medium",
     "initialDeckSize": 12,
     "incrementDeckSize": 1,
-    "tableSize": 6,
+    "initialTableSize": 6,
+    "incrementTableSize": 0,
     "selectedCardsFractInTable": 0.6
   },
   "hard": {
@@ -20,7 +22,17 @@
     "level": "hard",
     "initialDeckSize": 24,
     "incrementDeckSize": 1,
-    "tableSize": 12,
+    "initialTableSize": 12,
+    "incrementTableSize": 0,
     "selectedCardsFractInTable": 0.8
+  },
+  "incremental": {
+    "label": "Incremental",
+    "level": "incremental",
+    "initialDeckSize": 6,
+    "incrementDeckSize": 1,
+    "initialTableSize": 3,
+    "incrementTableSize": 1,
+    "selectedCardsFractInTable": 0.4
   }
 }

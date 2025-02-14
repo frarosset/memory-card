@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { PropTypes } from "prop-types";
 import GameCard from "./GameCard.jsx";
 import useDeck from "./useDeck.js";
@@ -12,14 +12,31 @@ function GameBoard({
   incrementScore,
   initialDeckSize = 6,
   incrementDeckSize = 1,
-  tableSize = 3,
+  initialTableSize = 3,
+  incrementTableSize = 1,
   selectedCardsFractInTable = 0.5,
   gameOverCallback = () => alert("Game over!"),
 }) {
+  // Validate increment inputs. When incrementing the deck size,
+  // consider also the increment on the table, to avoid being out
+  // of unselected cards to be used in there.
+  const actualIncrementDeckSize = useRef(
+    Math.max(incrementDeckSize, 1) + Math.max(incrementTableSize, 0)
+  );
+  const actualIncrementTableSize = useRef(Math.max(incrementTableSize, 0));
+
   // The imposed size of the deck, which contains the possible cards to use.
   // It is not necessarily equal to the actual size of the deck defined next,
   // because such deck is filled asyncronously to deckSize by useDeck() custom hook.
-  const [deckSize, setDeckSize] = useState(initialDeckSize);
+  // Take into account the TableSize, if this is larger than the desired deckSize
+  const [deckSize, setDeckSize] = useState(
+    Math.max(initialDeckSize, initialTableSize)
+  );
+
+  // The imposed size of the deck, which contains the possible cards to use.
+  // It is not necessarily equal to the actual size of the deck defined next,
+  // because such deck is filled asyncronously to deckSize by useDeck() custom hook.
+  const [tableSize, setTableSize] = useState(initialTableSize);
 
   // The deck is handled internally by the useDeck custom hook.
   // The returned deck should not be modified.
@@ -85,7 +102,8 @@ function GameBoard({
     setGameState("fetching");
     setSelectedCard(cardId);
 
-    setDeckSize((x) => x + incrementDeckSize);
+    setDeckSize((x) => x + actualIncrementDeckSize.current);
+    setTableSize((x) => x + actualIncrementTableSize.current);
   };
 
   return (
@@ -113,7 +131,8 @@ GameBoard.propTypes = {
   gameOverCallback: PropTypes.func,
   initialDeckSize: PropTypes.number,
   incrementDeckSize: PropTypes.number,
-  tableSize: PropTypes.number,
+  initialTableSize: PropTypes.number,
+  incrementTableSize: PropTypes.number,
   selectedCardsFractInTable: PropTypes.number,
 };
 
