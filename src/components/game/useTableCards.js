@@ -29,6 +29,20 @@ function useTableCards(
 
     let numOfUnselectedCardsInTable = tableSize - numOfSelectedCardsInTable;
 
+    // Debug message
+    console.log(
+      `D: ${deck.size} [ ${numOfSelectedCards} | ${
+        deck.size - numOfSelectedCards
+      } ] --- T: ${tableSize} [ ${numOfSelectedCardsInTable} | ${numOfUnselectedCardsInTable} ] --- ${(
+        numOfSelectedCardsInTable / numOfSelectedCards
+      ).toFixed(2)} | ${(
+        numOfUnselectedCardsInTable /
+        (deck.size - numOfSelectedCards)
+      ).toFixed(2)} --- ${(numOfSelectedCardsInTable / tableSize).toFixed(
+        2
+      )} / ${selectedCardsFractInTable.toFixed(2)}`
+    );
+
     // Choose such cards
     const allIds = [...deck.keys()];
     const table = [];
@@ -59,7 +73,7 @@ function useTableCards(
     return table;
   }
 
-  const [tableCards, setTableCards] = useState(getTableCards());
+  const [tableCards, setTableCards] = useState([]);
 
   function refreshTableCards() {
     setTableCards(getTableCards());
