@@ -23,8 +23,12 @@ function useTableCards(
     // - numOfUnselectedCardsInTable unselected cards
 
     let numOfSelectedCardsInTable = Math.min(
-      Math.floor(tableSize * selectedCardsFractInTable),
-      numOfSelectedCards
+      Math.max(
+        Math.floor(tableSize * selectedCardsFractInTable),
+        1 /* get the fraction, but use at least one selected card */
+      ),
+      numOfSelectedCards /* clip to the number of selected cards */,
+      tableSize - 1 /* leave at least one not selected item */
     );
 
     let numOfUnselectedCardsInTable = tableSize - numOfSelectedCardsInTable;
