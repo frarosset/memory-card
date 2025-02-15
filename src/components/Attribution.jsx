@@ -1,3 +1,5 @@
+import "../styles/Attribution.css";
+
 function Attribution() {
   return (
     <div className="attribution-div">

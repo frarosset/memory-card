@@ -9,6 +9,8 @@
   --bg-col: rgb(255, 255, 255, 0.87);
   --bg: rgb(255, 255, 255, 0.87);
   --accent-color: rgb(220, 110, 0);
+  --secondary-col: rgb(211, 211, 211);
+  --secondary-col-darker: rgb(200, 200, 200);
 
   --title-font: "Meow Script";
   --main-font: "Englebert";
@@ -20,7 +22,8 @@
   --page-padding-w: max(3vw, 1em);
   --page-padding: 2vh var(--page-padding-w);
   --page-gap: 2vh;
-  --title-font-size: 5vmin;
+  --title-font-size: max(3vw, 2em);
+  --attribution-footer-fontsize: max(0.5vw, 0.6em);
 
   --gameboard-padding: 0px;
   --gameboard-gap: max(2vw, 0.5em);

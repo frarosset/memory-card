@@ -1,0 +1,12 @@
+.attribution-p {
+  font-family: var(--secondary-font);
+  font-size: var(--attribution-footer-fontsize);
+  color: var(--secondary-col);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.attribution-p a {
+  font-weight: bold;
+  color: var(--secondary-col-darker);
+}
