@@ -14,7 +14,9 @@ function GameBoard({
   incrementDeckSize = 1,
   initialTableSize = 3,
   incrementTableSize = 1,
-  selectedCardsFractInTable = 0.5,
+  initialSelectedCardsFractInTable = 0.3,
+  limitSelectedCardsFractInTable = initialSelectedCardsFractInTable,
+  aSelectedCardsFractInTable = 1,
   gameOverCallback = () => alert("Game over!"),
 }) {
   // Validate increment inputs. When incrementing the deck size,
@@ -37,6 +39,51 @@ function GameBoard({
   // It is not necessarily equal to the actual size of the deck defined next,
   // because such deck is filled asyncronously to deckSize by useDeck() custom hook.
   const [tableSize, setTableSize] = useState(initialTableSize);
+
+  // selectedCardsFractInTable (denoted y(k) below) roughly represent the desired
+  // fraction of selected cards shown on the table, provided that there are enough of
+  // them (if this is not the case, all the selected cards are shown).
+  //
+  // See ./useTableCards.js for more details.
+  //
+  // It starts from initialSelectedCardsFractInTable and increase over time converging
+  // to limitSelectedCardsFractInTable with a speed depending on
+  // aSelectedCardsFractInTable, evolving according to:
+  //   y(k) = y0 + (b - y0) * (1 - a^k),
+  // where:
+  //   y(0) = y0
+  //   y(k) -> b for k -> +inf
+  //   a: aSelectedCardsFractInTable, 0<a<=1
+  //   b: limitSelectedCardsFractInTable
+  //  y0: initialSelectedCardsFractInTable
+  // that is:
+  //   a^k = 1 - (y(k) - y0) / (b - y0)
+  // y(k+1) = y0 + (b - y0) * (1 - a^(k+1))
+  //        = y0 + (b - y0) * (1 - a*a^k)
+  //        = y0 + (b - y0) * (1 - a*(1 - (y(k) - y0) / (b - y0)))
+  //        = b - ab + a * y(k)
+  //        = (1-a)*b + a * y(k)
+  //        = scfK + scfA * y(k)
+  //
+  // Constraints:
+  //   0 <= initialSelectedCardsFractInTable <= limitSelectedCardsFractInTable <= 1
+  //   0 < aSelectedCardsFractInTable < 1
+  //
+  // If you want to keep the value constant, just use
+  // limitSelectedCardsFractInTable = initialSelectedCardsFractInTable
+  // and aSelectedCardsFractInTable = 1, which are the default values for such props,
+  // ie, just provide initialSelectedCardsFractInTable as prop.
+
+  const scfA = useRef(clipFraction(aSelectedCardsFractInTable));
+  const scfY0 = useRef(clipFraction(initialSelectedCardsFractInTable));
+  const scfLimit = useRef(
+    Math.max(clipFraction(limitSelectedCardsFractInTable), scfY0.current)
+  );
+  const scfK = useRef((1 - scfA.current) * scfLimit.current);
+
+  const [selectedCardsFractInTable, setSelectedCardsFractInTable] = useState(
+    scfY0.current
+  );
 
   // The deck is handled internally by the useDeck custom hook.
   // The returned deck should not be modified.
@@ -104,6 +151,7 @@ function GameBoard({
 
     setDeckSize((x) => x + actualIncrementDeckSize.current);
     setTableSize((x) => x + actualIncrementTableSize.current);
+    setSelectedCardsFractInTable((x) => scfK.current + scfA.current * x);
   };
 
   return (
@@ -126,6 +174,10 @@ function GameBoard({
   );
 }
 
+function clipFraction(n) {
+  return Math.min(Math.max(0, n), 1);
+}
+
 GameBoard.propTypes = {
   incrementScore: PropTypes.func,
   gameOverCallback: PropTypes.func,
@@ -134,6 +186,9 @@ GameBoard.propTypes = {
   initialTableSize: PropTypes.number,
   incrementTableSize: PropTypes.number,
   selectedCardsFractInTable: PropTypes.number,
+  initialSelectedCardsFractInTable: PropTypes.number,
+  limitSelectedCardsFractInTable: PropTypes.number,
+  aSelectedCardsFractInTable: PropTypes.number,
 };
 
 export default GameBoard;

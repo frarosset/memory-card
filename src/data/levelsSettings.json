@@ -6,7 +6,7 @@
     "incrementDeckSize": 1,
     "initialTableSize": 3,
     "incrementTableSize": 0,
-    "selectedCardsFractInTable": 0.4
+    "initialSelectedCardsFractInTable": 0.4
   },
   "medium": {
     "label": "Medium",
@@ -15,7 +15,7 @@
     "incrementDeckSize": 1,
     "initialTableSize": 6,
     "incrementTableSize": 0,
-    "selectedCardsFractInTable": 0.6
+    "initialSelectedCardsFractInTable": 0.6
   },
   "hard": {
     "label": "Hard",
@@ -24,7 +24,7 @@
     "incrementDeckSize": 1,
     "initialTableSize": 12,
     "incrementTableSize": 0,
-    "selectedCardsFractInTable": 0.8
+    "initialSelectedCardsFractInTable": 0.8
   },
   "incremental": {
     "label": "Incremental",
@@ -33,6 +33,8 @@
     "incrementDeckSize": 1,
     "initialTableSize": 3,
     "incrementTableSize": 1,
-    "selectedCardsFractInTable": 0.4
+    "initialSelectedCardsFractInTable": 0.3,
+    "limitSelectedCardsFractInTable": 1,
+    "aSelectedCardsFractInTable": 0.98
   }
 }
