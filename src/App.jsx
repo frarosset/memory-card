@@ -7,10 +7,15 @@ import "./App.css";
 import levelsSettings from "./data/levelsSettings.json";
 
 function App() {
-  // bestScore is the best scored achieved. It is independent from the
-  // specific game, so it is instantiated outside the GameView component.
+  // levelsBestScore is an object containing the best scored achieved in
+  // each level from levelsSettings.json, indexed by the level name.
+  // These are independent from the specific game, so such object is instantiated
+  // outside the GameView component.
   // The persistence of this state is handled through Local Storage.
-  const [bestScore, setBestScore] = useLocalStorage("bestScore", 0);
+  const [levelsBestScore, setLevelsBestScore] = useLocalStorage(
+    "levelsBestScore",
+    initBestScore()
+  );
 
   // currentView defines the view that is currently shown
   const [currentView, setCurrentView] = useState({ name: "home", data: {} });
@@ -38,6 +43,14 @@ function App() {
         });
 
       const gameSettings = levelsSettings[currentView.data.level];
+
+      const bestScore = levelsBestScore[currentView.data.level];
+
+      const setBestScore = (newBestScore) => {
+        const copiedLevelsBestScore = structuredClone(levelsBestScore);
+        copiedLevelsBestScore[currentView.data.level] = newBestScore;
+        setLevelsBestScore(copiedLevelsBestScore);
+      };
 
       return (
         <GameView
@@ -79,6 +92,13 @@ function App() {
       );
     }
   }
+}
+
+function initBestScore() {
+  return Object.keys(levelsSettings).reduce((obj, key) => {
+    obj[key] = 0;
+    return obj;
+  }, {});
 }
 
 export default App;
