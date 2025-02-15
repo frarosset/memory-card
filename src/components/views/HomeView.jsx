@@ -1,5 +1,6 @@
 import { PropTypes } from "prop-types";
 import Title from "../Title.jsx";
+import Attribution from "../Attribution.jsx";
 import "../../styles/GameView.css";
 
 function HomeView({ gameLevels, setPlayGameCallback }) {
@@ -15,6 +16,9 @@ function HomeView({ gameLevels, setPlayGameCallback }) {
           </button>
         ))}
       </main>
+      <footer className="attribution-footer">
+        <Attribution />
+      </footer>
     </div>
   );
 }

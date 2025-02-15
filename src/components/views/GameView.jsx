@@ -3,6 +3,7 @@ import { PropTypes } from "prop-types";
 import GameBoard from "../game/GameBoard.jsx";
 import ScoreBoard from "../game/ScoreBoard.jsx";
 import Title from "../Title.jsx";
+import Attribution from "../Attribution.jsx";
 import "../../styles/GameView.css";
 
 function GameView({
@@ -48,6 +49,9 @@ function GameView({
           {...{ ...gameSettings }}
         />
       </main>
+      <footer className="attribution-footer">
+        <Attribution />
+      </footer>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { PropTypes } from "prop-types";
 import Title from "../Title.jsx";
 import Card from "../Card.jsx";
+import Attribution from "../Attribution.jsx";
 import "../../styles/GameOver.css";
 
 function GameOverView({
@@ -33,6 +34,9 @@ function GameOverView({
           </div>
         </Card>
       </main>
+      <footer className="attribution-footer">
+        <Attribution />
+      </footer>
     </div>
   );
 }
