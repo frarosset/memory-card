@@ -1,10 +1,8 @@
-.title {
-  font-size: var(--title-font-size);
-}
 .title h1 {
   font-family: var(--title-font);
   text-shadow: var(--text-shadow);
   font-weight: bold;
+  font-size: var(--title-fontsize);
 
   perspective-origin: left;
   perspective: 100em;

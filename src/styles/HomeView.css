@@ -1,0 +1,21 @@
+.home-view header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--home-header-padding);
+
+  --title-fontsize: var(--home-title-fontsize);
+  --instructions-fontsize: var(--home-instructions-fontsize);
+
+  animation: header-animation 2s 1;
+}
+
+@keyframes header-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

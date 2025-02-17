@@ -22,8 +22,13 @@
   --page-padding-w: max(3vw, 1em);
   --page-padding: 2vh var(--page-padding-w);
   --page-gap: 2vh;
-  --title-font-size: max(3vw, 2em);
+  --title-fontsize: max(3vw, 2em);
   --attribution-footer-fontsize: max(0.5vw, 0.6em);
+  --instructions-color: var(--secondary-col-darker);
+
+  --home-title-fontsize: max(15vmin, 20px);
+  --home-instructions-fontsize: calc(0.2 * var(--home-title-fontsize));
+  --home-header-padding: max(6vh, 20px) 0;
 
   --gameboard-padding: 0px;
   --gameboard-gap: max(2vw, 0.5em);

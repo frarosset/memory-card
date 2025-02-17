@@ -2,7 +2,7 @@ import { PropTypes } from "prop-types";
 import Title from "../Title.jsx";
 import Instructions from "../Instructions.jsx";
 import Attribution from "../Attribution.jsx";
-import "../../styles/GameView.css";
+import "../../styles/HomeView.css";
 
 function HomeView({ gameLevels, setPlayGameCallback }) {
   return (

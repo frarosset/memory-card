@@ -1,3 +1,5 @@
+import "../styles/Instructions.css";
+
 function Instructions() {
   return (
     <div className="instructions">
