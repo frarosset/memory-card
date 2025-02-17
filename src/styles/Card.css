@@ -3,8 +3,8 @@
 .card {
   border-radius: var(--card-radius);
 
-  width: auto;
-  height: auto;
+  width: var(--card-size, auto);
+  height: var(--card-size, auto);
   aspect-ratio: 1;
   position: relative;
 

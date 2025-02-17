@@ -1,0 +1,3 @@
+.game-over-view .game-over-card {
+  --card-size: var(--single-card-size);
+}

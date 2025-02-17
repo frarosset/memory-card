@@ -10,4 +10,18 @@
 
   padding: var(--cards-container-padding);
   gap: var(--cards-container-gap);
+
+  container-type: size;
+}
+
+.cards-container > .card {
+  --card-size: min(
+    calc((100cqh - (var(--cards-container-padding)) * 2)),
+    calc(
+      (
+          100cqw - var(--cards-container-gap) * (var(--cards-per-row) - 1) -
+            (var(--cards-container-padding)) * 2
+        ) / var(--cards-per-row)
+    )
+  );
 }

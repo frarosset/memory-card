@@ -1,3 +1,7 @@
+.home-view {
+  --cards-per-row: var(--home-level-cards-per-row);
+}
+
 .home-view header {
   display: flex;
   flex-direction: column;

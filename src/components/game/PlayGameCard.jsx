@@ -1,6 +1,7 @@
 import { PropTypes } from "prop-types";
 import Card from "../Card.jsx";
 import "../../styles/GameCard.css";
+import "../../styles/PlayGameCard.css";
 
 function PlayGameCard({ level, bestScore, playGameCallback }) {
   return (

@@ -29,14 +29,17 @@
   --home-title-fontsize: max(15vmin, 20px);
   --home-instructions-fontsize: calc(0.2 * var(--home-title-fontsize));
   --home-header-padding: max(6vh, 20px) 0;
+  --home-level-cards-per-row: 4;
 
   --gameboard-padding: 0px;
   --gameboard-gap: max(2vw, 0.5em);
+  --gameboard-cards-per-row: 6;
 
   --cards-container-padding: 0px;
   --cards-container-gap: max(2vw, 0.5em);
 
-  --cards-per-row: 6;
+  --single-card-size: min(70cqh, 100cqw);
+
   --card-radius: 0.5vw;
   --card-shadow: 0.2vmin 0.3vmin 1vmin black;
   --card-transition-duration: 1s;
