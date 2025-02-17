@@ -2,6 +2,7 @@ import { PropTypes } from "prop-types";
 import Title from "../Title.jsx";
 import Instructions from "../Instructions.jsx";
 import Attribution from "../Attribution.jsx";
+import PlayGameCard from "../game/PlayGameCard.jsx";
 import "../../styles/HomeView.css";
 
 function HomeView({ gameLevels, setPlayGameCallback }) {
@@ -13,9 +14,12 @@ function HomeView({ gameLevels, setPlayGameCallback }) {
       </header>
       <main>
         {gameLevels.map((level) => (
-          <button key={level.key} onClick={setPlayGameCallback(level.key)}>
-            {level.label}
-          </button>
+          <PlayGameCard
+            key={level.key}
+            level={level.label}
+            bestScore={level.bestScore}
+            playGameCallback={setPlayGameCallback(level.key)}
+          />
         ))}
       </main>
       <footer className="attribution-footer">
@@ -26,7 +30,11 @@ function HomeView({ gameLevels, setPlayGameCallback }) {
 }
 
 HomeView.propTypes = {
-  gameLevels: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+  gameLevels: PropTypes.arrayOf(
+    PropTypes.objectOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    )
+  ),
   setPlayGameCallback: PropTypes.func,
 };
 

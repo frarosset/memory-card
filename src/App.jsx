@@ -82,6 +82,7 @@ function App() {
       const gameLevels = Object.entries(levelsSettings).map(([key, value]) => ({
         key: key,
         label: value.label,
+        bestScore: levelsBestScore[key],
       }));
 
       return (

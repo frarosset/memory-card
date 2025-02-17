@@ -1,12 +1,13 @@
 import { PropTypes } from "prop-types";
 import "../styles/Card.css";
 
-function Card({ children, customClass, customAttributes }) {
+function Card({ children, customClass, customAttributes, onClickCallback }) {
   return (
     <div
       className={`card ${customClass}`}
       onPointerEnter={onPointerEnterCallback}
       {...customAttributes}
+      onClick={onClickCallback}
     >
       <div className="card-rear card-face"></div>
       <div className="card-front card-face">{children}</div>
@@ -22,6 +23,7 @@ Card.propTypes = {
   ]).isRequired,
   customClass: PropTypes.string,
   customAttributes: PropTypes.objectOf(PropTypes.string),
+  onClickCallback: PropTypes.func,
 };
 
 export default Card;
