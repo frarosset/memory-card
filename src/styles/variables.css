@@ -52,6 +52,10 @@
 
   --text-shadow: 0 0.05em 0.1em grey;
   --text-shadow-dark: 0 0.05em 0.1em black;
+  --shadow-hover-color: rgb(0, 0, 0, 0.6);
+  --text-shadow-hover: var(--text-shadow),
+    -0.25px -0.25px var(--shadow-hover-color),
+    0.25px 0.25px var(--shadow-hover-color);
 
   --card-info-padding: 1em;
   --card-info-font-size: max(10vmin, 18px);

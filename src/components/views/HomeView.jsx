@@ -7,7 +7,7 @@ function HomeView({ gameLevels, setPlayGameCallback }) {
   return (
     <div className={"view home-view"}>
       <header>
-        <Title />
+        <Title animate={true} />
       </header>
       <main>
         {gameLevels.map((level) => (

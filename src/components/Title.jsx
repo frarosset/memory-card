@@ -3,9 +3,12 @@ import "../styles/Title.css";
 
 const appTitle = "Meowmory";
 
-function Title({ onClickCallback }) {
+function Title({ onClickCallback, animate = false }) {
   return (
-    <div className="title" onClick={onClickCallback}>
+    <div
+      className={`title ${animate ? "animate" : ""}`}
+      onClick={onClickCallback}
+    >
       <h1 aria-label={appTitle}>
         {appTitle.split("").map((letter, idx) => (
           <span key={idx} aria-hidden={true} className={"title-letter"}>
@@ -19,6 +22,7 @@ function Title({ onClickCallback }) {
 
 Title.propTypes = {
   onClickCallback: PropTypes.func,
+  animate: PropTypes.bool,
 };
 
 export default Title;
