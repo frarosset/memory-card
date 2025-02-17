@@ -35,6 +35,21 @@
   backface-visibility: hidden;
 }
 
+.card-front {
+  background-image: var(--card-bg-image);
+  background-position: center;
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-content {
+  border-radius: inherit;
+  padding: var(--card-front-border-size);
+}
+
 .card-rear {
   background-image: var(--card-bg-image);
   background-position: center;

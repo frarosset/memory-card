@@ -10,7 +10,9 @@ function Card({ children, customClass, customAttributes, onClickCallback }) {
       onClick={onClickCallback}
     >
       <div className="card-rear card-face"></div>
-      <div className="card-front card-face">{children}</div>
+      <div className="card-front card-face">
+        <div className="card-content">{children}</div>
+      </div>
       <div className="card-glow"></div>
     </div>
   );

@@ -49,6 +49,7 @@
   --card-hover-text-scale: 0.8;
   --card-hover-button-scale: 1.1;
   --card-hover-button-no-focus-scale: 0.9;
+  --card-front-border-size: 5%;
   /* The following are set and unset via JS
   --card-hover-scale
   --card-hover-shadow-size
