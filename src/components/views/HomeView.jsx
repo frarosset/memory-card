@@ -1,5 +1,6 @@
 import { PropTypes } from "prop-types";
 import Title from "../Title.jsx";
+import Instructions from "../Instructions.jsx";
 import Attribution from "../Attribution.jsx";
 import "../../styles/GameView.css";
 
@@ -8,6 +9,7 @@ function HomeView({ gameLevels, setPlayGameCallback }) {
     <div className={"view home-view"}>
       <header>
         <Title animate={true} />
+        <Instructions />
       </header>
       <main>
         {gameLevels.map((level) => (
