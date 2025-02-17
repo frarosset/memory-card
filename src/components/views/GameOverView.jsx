@@ -3,6 +3,7 @@ import Title from "../Title.jsx";
 import GameOverCard from "../game/GameOverCard.jsx";
 import Attribution from "../Attribution.jsx";
 import "../../styles/GameOver.css";
+import "../../styles/CardsContainer.css";
 
 function GameOverView({
   score,
@@ -16,9 +17,16 @@ function GameOverView({
         <Title onClickCallback={setHomeViewCallback} />
       </header>
       <main>
-        <GameOverCard
-          {...{ score, isNewBestScore, playGameCallback, setHomeViewCallback }}
-        />
+        <div className="cards-container">
+          <GameOverCard
+            {...{
+              score,
+              isNewBestScore,
+              playGameCallback,
+              setHomeViewCallback,
+            }}
+          />
+        </div>
       </main>
       <footer className="attribution-footer">
         <Attribution />

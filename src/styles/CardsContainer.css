@@ -1,0 +1,13 @@
+.cards-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  height: 100%;
+  width: 100%;
+
+  padding: var(--cards-container-padding);
+  gap: var(--cards-container-gap);
+}

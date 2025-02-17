@@ -4,6 +4,7 @@ import Instructions from "../Instructions.jsx";
 import Attribution from "../Attribution.jsx";
 import PlayGameCard from "../game/PlayGameCard.jsx";
 import "../../styles/HomeView.css";
+import "../../styles/CardsContainer.css";
 
 function HomeView({ gameLevels, setPlayGameCallback }) {
   return (
@@ -13,14 +14,16 @@ function HomeView({ gameLevels, setPlayGameCallback }) {
         <Instructions />
       </header>
       <main>
-        {gameLevels.map((level) => (
-          <PlayGameCard
-            key={level.key}
-            level={level.label}
-            bestScore={level.bestScore}
-            playGameCallback={setPlayGameCallback(level.key)}
-          />
-        ))}
+        <div className="cards-container">
+          {gameLevels.map((level) => (
+            <PlayGameCard
+              key={level.key}
+              level={level.label}
+              bestScore={level.bestScore}
+              playGameCallback={setPlayGameCallback(level.key)}
+            />
+          ))}
+        </div>
       </main>
       <footer className="attribution-footer">
         <Attribution />

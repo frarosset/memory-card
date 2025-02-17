@@ -5,6 +5,7 @@ import useDeck from "./useDeck.js";
 import useSelectedCards from "./useSelectedCards.js";
 import useTableCards from "./useTableCards.js";
 import "../../styles/GameBoard.css";
+import "../../styles/CardsContainer.css";
 
 const delayFetchingToReadyInMs = 1000;
 
@@ -156,7 +157,7 @@ function GameBoard({
 
   return (
     <div
-      className={`gameboard ${gameState}`}
+      className={`gameboard ${gameState} cards-container`}
       onClick={gameState !== "fetching" ? clickCallback : undefined}
     >
       {tableCards.map((cardId, idx) => {
