@@ -1,0 +1,74 @@
+/* Animations are based on: https://auroratide.com/posts/realistic-flip-animation/ */
+
+.game-over-card {
+  animation-name: flip-to-front-game-over;
+}
+
+.game-over-msg {
+  font-size: var(--game-over-h2-fontsize);
+  text-transform: uppercase;
+  text-shadow: var(--info-card-content-text-shadow);
+}
+
+.game-over-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1em;
+}
+
+.game-over-score-msg {
+  font-size: var(--game-over-score-fontsize);
+  text-shadow: var(--info-card-content-text-shadow);
+}
+.game-over-new-best-score-msg {
+  font-family: var(--accent-font);
+  color: var(--accent-color);
+  font-size: var(--game-over-best-score-fontsize);
+  text-shadow: var(--info-card-content-text-shadow);
+  letter-spacing: 0.1em;
+  animation: zoom var(--game-over-best-score-animation-duration) infinite
+    alternate ease-in-out;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.game-over-btns {
+  font-family: var(--secondary-font);
+  min-width: 75%;
+  display: flex;
+  gap: 1em;
+}
+.game-over-btn {
+  font-size: var(--game-over-btn-fontsize);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  flex: 1;
+  min-width: 0;
+}
+
+.game-over-card .card-front:hover .game-over-msg,
+.game-over-card .card-front:hover .game-over-score {
+  transform: translateZ(var(--card-hover-text-translate-z))
+    scale(var(--card-hover-text-scale));
+}
+.game-over-card .card-front:hover .game-over-btns {
+  transform: translateZ(var(--card-hover-button-translate-z))
+    scale(var(--card-hover-button-scale));
+}
+
+.game-over-card .card-front:hover .game-over-btn:hover + .game-over-btn,
+.game-over-card .card-front:hover .game-over-btn:has(+ .game-over-btn:hover) {
+  transform: scale(var(--card-hover-button-no-focus-scale));
+}

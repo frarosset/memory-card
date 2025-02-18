@@ -31,30 +31,31 @@
   width: 100%;
   height: 100%;
 
+  background-position: center;
+  background-size: cover;
+
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
 .card-front {
-  background-image: var(--card-bg-image);
-  background-position: center;
-  background-size: cover;
-
+  background-image: var(--card-front-bg-image);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .card-content {
+  /* The following rule allows to set the elements within .card-contents size based on the sizes of the container */
+  container-type: size;
+
   border-radius: inherit;
-  padding: var(--card-front-border-size);
+  width: var(--card-content-size);
+  height: var(--card-content-size);
 }
 
 .card-rear {
-  background-image: var(--card-bg-image);
-  background-position: center;
-  background-size: cover;
-
+  background-image: var(--card-rear-bg-image);
   position: absolute;
   top: 0;
   left: 0;
@@ -62,7 +63,66 @@
   transform: rotateY(-180deg);
 }
 
-/* animations */
+/* cards with default front face image ---------------------------------------- */
+
+.info-card .card-content {
+  padding: var(--info-card-content-padding);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-card {
+  transition: filter var(--card-transition-duration),
+    opacity var(--card-transition-duration);
+}
+.info-card .card-content > * {
+  transition: transform var(--card-transition-duration);
+}
+
+/* set background of front face (with some transparency effects) */
+.info-card .card-content {
+  background-image: radial-gradient(
+      closest-side,
+      var(--info-card-content-radial-color-0) 0%,
+      var(--info-card-content-radial-color-100) 100%
+    ),
+    var(--info-card-content-front-bg-image);
+  background-position: center;
+  background-size: cover;
+
+  filter: grayscale(var(--info-card-content-greyscale));
+
+  color: var(--info-card-content-color);
+
+  border-radius: inherit;
+}
+
+.cards-container:has(.info-card:hover) .info-card:not(:hover) {
+  filter: grayscale(var(--info-card-no-hover-greyscale));
+  opacity: var(--info-card-no-hover-opacity);
+}
+
+/* perspective */
+
+.info-card .card-front,
+.info-card .card-content {
+  perspective: var(--card-perspective);
+  perspective-origin: bottom;
+}
+
+.info-card .card-content {
+  filter: drop-shadow(--card-shadow);
+}
+
+.info-card .card-front:hover .card-content {
+  perspective-origin: var(--card-hover-perspective-x)
+    var(--card-hover-perspective-y);
+}
+
+/* animations ----------------------------------------------------------- */
 /* order in transform: scale rotate translate-z  rotate-y rotate-3d */
 /* Note that animation-fill-mode: both; makes the animation states persist 
 when the end of the animation is reached. The changing while hovering is 

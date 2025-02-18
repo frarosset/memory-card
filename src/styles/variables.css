@@ -17,7 +17,9 @@
   --accent-font: "Bangers";
   --secondary-font: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
-  --card-bg-image: url("./card-rear.jpg");
+  --card-rear-bg-image: url("./card-rear.jpg");
+  --card-front-bg-image: url("./card-rear.jpg");
+  --info-card-content-front-bg-image: url("./card-front.jpg");
 
   --page-padding-w: max(3vw, 1em);
   --page-padding: 2vh var(--page-padding-w);
@@ -44,12 +46,13 @@
   --card-shadow: 0.2vmin 0.3vmin 1vmin black;
   --card-transition-duration: 1s;
   --card-hover-shadow-color: rgb(0, 0, 0, 0.5);
-  --card-hover-text-translate-z: -5em;
-  --card-hover-button-translate-z: 10em;
+  --card-hover-text-translate-z: -3em;
+  --card-hover-button-translate-z: 3em;
   --card-hover-text-scale: 0.8;
   --card-hover-button-scale: 1.1;
   --card-hover-button-no-focus-scale: 0.9;
-  --card-front-border-size: 5%;
+  --card-content-size: 90%;
+
   /* The following are set and unset via JS
   --card-hover-scale
   --card-hover-shadow-size
@@ -63,15 +66,28 @@
   --card-hover-perspective-y */
 
   --text-shadow: 0 0.05em 0.1em grey;
-  --text-shadow-dark: 0 0.05em 0.1em black;
   --shadow-hover-color: rgb(0, 0, 0, 0.6);
   --text-shadow-hover: var(--text-shadow),
     -0.25px -0.25px var(--shadow-hover-color),
     0.25px 0.25px var(--shadow-hover-color);
 
-  --card-info-padding: 1em;
-  --card-info-font-size: max(10vmin, 18px);
-  --card-info-bg: white;
+  --info-card-content-padding: 10%;
+  --info-card-content-radial-color-0: rgb(255, 255, 255, 0.25);
+  --info-card-content-radial-color-100: rgb(0, 0, 0, 0.95);
+  --info-card-content-greyscale: 0;
+  --info-card-content-color: white;
+  --info-card-content-text-shadow: 0.05em 0.05em 0.05em black;
+  --info-card-no-hover-greyscale: 0.5;
+  --info-card-no-hover-opacity: 0.05;
+
+  --play-game-h2-fontsize: 24cqw;
+  --play-game-best-score-fontsize: 8cqw;
+
+  --game-over-h2-fontsize: 24cqw;
+  --game-over-score-fontsize: 8cqw;
+  --game-over-best-score-fontsize: 8cqw;
+  --game-over-btn-fontsize: 6cqw;
+  --game-over-best-score-animation-duration: 1.8s;
 
   --card-flip-height: 18em;
   --card-perspective: 100em;

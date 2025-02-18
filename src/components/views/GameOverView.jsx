@@ -2,7 +2,6 @@ import { PropTypes } from "prop-types";
 import Title from "../Title.jsx";
 import GameOverCard from "../game/GameOverCard.jsx";
 import Attribution from "../Attribution.jsx";
-import "../../styles/GameOver.css";
 import "../../styles/GameOverView.css";
 import "../../styles/CardsContainer.css";
 

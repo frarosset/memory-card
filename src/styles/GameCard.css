@@ -1,5 +1,9 @@
 /* Animations are based on: https://auroratide.com/posts/realistic-flip-animation/ */
 
+.game-card {
+  cursor: pointer;
+}
+
 .game-card-img {
   width: 100%;
   height: 100%;

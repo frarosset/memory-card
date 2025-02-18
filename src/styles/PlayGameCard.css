@@ -1,3 +1,22 @@
 .play-game-card {
   animation-name: flip-to-front-ini;
+  cursor: pointer;
+}
+
+.play-game-card .play-game-level {
+  font-size: var(--play-game-h2-fontsize);
+  text-transform: uppercase;
+  text-shadow: var(--info-card-content-text-shadow);
+}
+
+.play-game-card .play-game-best-score {
+  font-size: var(--play-game-best-score-fontsize);
+  text-shadow: var(--info-card-content-text-shadow);
+}
+
+.play-game-card .card-front:hover .play-game-level {
+  /* .play-game-card .card-front:hover .play-game-best-score { */
+  transform: translateZ(var(--card-hover-text-translate-z))
+    scale(var(--card-hover-text-scale));
+  z-index: 10;
 }

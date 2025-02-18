@@ -5,7 +5,10 @@ import "../../styles/PlayGameCard.css";
 
 function PlayGameCard({ level, bestScore, playGameCallback }) {
   return (
-    <Card customClass={`play-game-card`} onClickCallback={playGameCallback}>
+    <Card
+      customClass={`play-game-card info-card`}
+      onClickCallback={playGameCallback}
+    >
       <h2 className="play-game-level">{level}</h2>
       <p className="play-game-best-score">{`Best: ${bestScore}`}</p>
     </Card>
