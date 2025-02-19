@@ -1,5 +1,6 @@
-.home-view {
+.home-view .cards-container {
   --cards-per-row: var(--home-level-cards-per-row);
+  --cards-per-col: var(--home-level-cards-per-col);
 }
 
 .home-view header {

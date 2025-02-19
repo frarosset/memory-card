@@ -16,7 +16,12 @@
 
 .cards-container > .card {
   --card-size: min(
-    calc((100cqh - (var(--cards-container-padding)) * 2)),
+    calc(
+      (
+          100cqh - var(--cards-container-gap) * (var(--cards-per-col) - 1) -
+            (var(--cards-container-padding)) * 2
+        ) / var(--cards-per-col)
+    ),
     calc(
       (
           100cqw - var(--cards-container-gap) * (var(--cards-per-row) - 1) -

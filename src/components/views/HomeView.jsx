@@ -3,10 +3,17 @@ import Title from "../Title.jsx";
 import Instructions from "../Instructions.jsx";
 import Attribution from "../Attribution.jsx";
 import PlayGameCard from "../game/PlayGameCard.jsx";
+import useCardsPerRowAndCol from "../../customHooks/useCardsPerRowAndCol.js";
 import "../../styles/HomeView.css";
 import "../../styles/CardsContainer.css";
 
 function HomeView({ gameLevels, setPlayGameCallback }) {
+  const cardsContainerRef = useCardsPerRowAndCol(
+    gameLevels.length,
+    "--home-level-cards-per-row",
+    "--home-level-cards-per-col"
+  );
+
   return (
     <div className={"view home-view"}>
       <header>
@@ -14,7 +21,7 @@ function HomeView({ gameLevels, setPlayGameCallback }) {
         <Instructions />
       </header>
       <main>
-        <div className="cards-container">
+        <div className="cards-container" ref={cardsContainerRef}>
           {gameLevels.map((level) => (
             <PlayGameCard
               key={level.key}

@@ -4,6 +4,7 @@ import GameCard from "./GameCard.jsx";
 import useDeck from "./useDeck.js";
 import useSelectedCards from "./useSelectedCards.js";
 import useTableCards from "./useTableCards.js";
+import useCardsPerRowAndCol from "../../customHooks/useCardsPerRowAndCol.js";
 import "../../styles/GameBoard.css";
 import "../../styles/CardsContainer.css";
 
@@ -155,9 +156,16 @@ function GameBoard({
     setSelectedCardsFractInTable((x) => scfK.current + scfA.current * x);
   };
 
+  const cardsContainerRef = useCardsPerRowAndCol(
+    tableSize,
+    "--gameboard-cards-per-row",
+    "--gameboard-cards-per-col"
+  );
+
   return (
     <div
       className={`gameboard ${gameState} cards-container`}
+      ref={cardsContainerRef}
       onClick={gameState !== "fetching" ? clickCallback : undefined}
     >
       {tableCards.map((cardId, idx) => {

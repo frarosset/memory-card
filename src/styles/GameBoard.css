@@ -1,5 +1,6 @@
-.gameboard {
+.gameboard.cards-container {
   --cards-container-padding: var(--gameboard-padding);
   --cards-container-gap: var(--gameboard-gap);
   --cards-per-row: var(--gameboard-cards-per-row);
+  --cards-per-col: var(--gameboard-cards-per-col);
 }
