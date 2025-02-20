@@ -175,17 +175,21 @@ function GameBoard({
       ref={cardsContainerRef}
       onClick={gameState !== "fetching" ? clickCallback : undefined}
     >
-      {tableCards.map((cardId, idx) => {
-        const card = deck.get(cardId);
-        return (
-          <GameCard
-            key={idx}
-            src={card.url}
-            id={card.id}
-            customClass={isSelectedCard(card.id) ? "selected" : ""}
-          />
-        );
-      })}
+      {gameState === "fetching-init" ? (
+        <img className={"fetching-init-img"} src={"/loading.gif"} />
+      ) : (
+        tableCards.map((cardId, idx) => {
+          const card = deck.get(cardId);
+          return (
+            <GameCard
+              key={idx}
+              src={card.url}
+              id={card.id}
+              customClass={isSelectedCard(card.id) ? "selected" : ""}
+            />
+          );
+        })
+      )}
     </div>
   );
 }

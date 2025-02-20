@@ -4,3 +4,8 @@
   --cards-per-row: var(--gameboard-cards-per-row);
   --cards-per-col: var(--gameboard-cards-per-col);
 }
+
+.fetching-init-img {
+  animation: fade-in var(--fade-in-duration) 1;
+  height: var(--loading-img-size);
+}

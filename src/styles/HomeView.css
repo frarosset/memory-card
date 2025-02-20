@@ -13,14 +13,5 @@
   --title-fontsize: var(--home-title-fontsize);
   --instructions-fontsize: var(--home-instructions-fontsize);
 
-  animation: header-animation 2s 1;
-}
-
-@keyframes header-animation {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  animation: fade-in var(--fade-in-duration) 1;
 }
