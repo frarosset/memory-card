@@ -43,10 +43,11 @@
   --home-header-padding: max(4vh, 0.5rem) 0;
 
   --gameboard-padding: 0px;
-  --gameboard-gap: max(2vw, 0.5em);
+  --gameboard-gap: max(3vw, 0.5rem);
 
   --cards-container-padding: 0px;
-  --cards-container-gap: max(2vw, 0.5em);
+  --cards-container-gap: max(3vw, 0.5rem);
+  --min-cards-container-gap: 0.5vmin;
 
   --single-card-size: min(70cqh, 100cqw);
 
@@ -62,7 +63,7 @@
   --card-hover-button-scale: 1.1;
   --card-hover-button-no-focus-scale: 0.9;
   --card-content-size: 90%;
-  --card-flip-height: 18em;
+  --card-flip-height: 10em;
   --card-perspective: 100em;
 
   /* The following are set and unset via JS

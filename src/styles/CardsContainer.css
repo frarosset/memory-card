@@ -31,19 +31,28 @@
   gap: var(--cards-container-gap);
 
   container-type: size;
-}
 
-.cards-container > .card {
+  --cards-container-gap-rows: max(
+    calc(var(--cards-container-gap) / max(var(--cards-per-col) - 1, 1)),
+    var(--min-cards-container-gap)
+  );
+  --cards-container-gap-cols: max(
+    calc(var(--cards-container-gap) / max(var(--cards-per-row) - 1, 1)),
+    var(--min-cards-container-gap)
+  );
+
+  gap: var(--cards-container-gap-rows) var(--cards-container-gap-cols);
+
   --card-size: min(
     calc(
       (
-          100cqh - var(--cards-container-gap) * (var(--cards-per-col) - 1) -
+          100cqh - var(--cards-container-gap-rows) * (var(--cards-per-col) - 1) -
             (var(--cards-container-padding)) * 2
         ) / var(--cards-per-col)
     ),
     calc(
       (
-          100cqw - var(--cards-container-gap) * (var(--cards-per-row) - 1) -
+          100cqw - var(--cards-container-gap-cols) * (var(--cards-per-row) - 1) -
             (var(--cards-container-padding)) * 2
         ) / var(--cards-per-row)
     )
