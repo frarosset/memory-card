@@ -1,17 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-	<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
-	<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-	<link rel="shortcut icon" href="/favicon/favicon.ico" />
-	<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-	<link rel="manifest" href="/favicon/site.webmanifest" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meowmory</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <style>
+        body,
+        #root {
+          margin: 0 auto;
+          min-height: 100vh;
+          min-height: 100dvh;
+          height: 100vh;
+          height: 100dvh;
+          width: 100%;
+          overflow: hidden;
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+        }
+        img {
+          height: 6vh;
+        }
+        p {
+          font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+          font-size: max(18px, 2vh);
+          position: absolute;
+          bottom: 5vh;
+        }
+        body {
+          animation: fade-in 1s;
+        }
+        @keyframes fade-in {
+          0% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+      </style>
+      <img src="/loading.gif" />
+      <p>Meowmory</p>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

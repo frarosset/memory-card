@@ -15,6 +15,10 @@ function Attribution() {
         >
           Microsoft Copilot
         </a>
+        . Loading icon from{" "}
+        <a href="https://icons8.com/preloaders/" target="_blank">
+          Icons8
+        </a>
         .
       </p>
     </div>
