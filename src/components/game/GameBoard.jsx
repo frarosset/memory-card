@@ -120,13 +120,23 @@ function GameBoard({
     const isFetching = isInit || gameState === "fetching";
 
     if (isFetching && deckSize === deck.size) {
-      setTimeout(
-        () => {
-          setGameState(isInit ? "ready-init" : "ready");
-          refreshTableCards();
-        },
-        isInit ? 0 : delayFetchingToReadyInMs
-      );
+      if (isInit) {
+        setGameState("ready-init");
+        refreshTableCards();
+      } else {
+        // When not in the initialization phase, after the fetching is done,
+        // you might want to update the table size and the selected card fraction
+        // in the table. Use a temporary game state, which triggers a re-render.
+        // On the next game render, the table cards are refreshed
+        setTimeout(() => {
+          setGameState("update-table-settings");
+          setTableSize((x) => x + actualIncrementTableSize.current);
+          setSelectedCardsFractInTable((x) => scfK.current + scfA.current * x);
+        }, delayFetchingToReadyInMs);
+      }
+    } else if (gameState === "update-table-settings") {
+      refreshTableCards();
+      setGameState("ready");
     }
   }, [deck, deckSize, gameState, refreshTableCards]);
 
@@ -148,12 +158,9 @@ function GameBoard({
 
     // code for clicking on an unselected card (todo)
     incrementScore(1);
-    setGameState("fetching");
     setSelectedCard(cardId);
-
+    setGameState("fetching");
     setDeckSize((x) => x + actualIncrementDeckSize.current);
-    setTableSize((x) => x + actualIncrementTableSize.current);
-    setSelectedCardsFractInTable((x) => scfK.current + scfA.current * x);
   };
 
   const cardsContainerRef = useCardsPerRowAndCol(
