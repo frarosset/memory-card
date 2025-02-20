@@ -1,36 +1,46 @@
 @import url("https://fonts.googleapis.com/css2?family=Englebert&family=Bangers&family=Meow+Script&display=swap");
 
 :root {
-  --main-font: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --txt-lineheight: 1;
-  --txt-fontsize: 16;
-
+  /* colors */
   --col-txt: #242424;
+  --col-txt-light: #efefef;
   --bg-col: rgb(255, 255, 255, 0.87);
-  --bg: rgb(255, 255, 255, 0.87);
+  --bg: linear-gradient(white, #efefef);
   --accent-color: rgb(220, 110, 0);
-  --secondary-col: rgb(211, 211, 211);
-  --secondary-col-darker: rgb(200, 200, 200);
+  --secondary-col: rgb(200, 200, 200);
+  --secondary-col-darker: rgb(190, 190, 190);
 
-  --title-font: "Meow Script";
-  --main-font: "Englebert";
-  --accent-font: "Bangers";
-  --secondary-font: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* fonts */
+  --default-font: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --title-font: "Meow Script", var(--default-font);
+  --main-font: "Englebert", var(--default-font);
+  --accent-font: "Bangers", var(--default-font);
+  --secondary-font: var(--default-font);
 
+  /* default card faces */
   --card-rear-bg-image: url("./card-rear.jpg");
   --card-front-bg-image: url("./card-rear.jpg");
   --info-card-content-front-bg-image: url("./card-front.jpg");
 
-  --page-padding-w: max(3vw, 1em);
-  --page-padding: 2vh var(--page-padding-w);
-  --page-gap: 2vh;
-  --title-fontsize: max(3vw, 2em);
-  --attribution-footer-fontsize: max(0.5vw, 0.6em);
+  --txt-lineheight: 1;
+  --txt-fontsize: max(18px, 2vmin);
+  --text-shadow: 0 0.05em 0.1em grey;
+  --shadow-hover-color: rgb(0, 0, 0, 0.6);
+  --text-shadow-hover: var(--text-shadow),
+    -0.25px -0.25px var(--shadow-hover-color),
+    0.25px 0.25px var(--shadow-hover-color);
+
+  --page-padding-h: max(2vh, 0.5rem);
+  --page-padding-w: max(3vw, 1rem);
+  --page-padding: var(--page-padding-h) var(--page-padding-w);
+  --page-gap: max(4vh, 0.5rem);
+  --title-fontsize: max(3vw, 2rem);
+  --attribution-footer-fontsize: max(0.8vw, 0.6rem);
   --instructions-color: var(--secondary-col-darker);
 
   --home-title-fontsize: max(15vmin, 20px);
   --home-instructions-fontsize: calc(0.2 * var(--home-title-fontsize));
-  --home-header-padding: max(6vh, 20px) 0;
+  --home-header-padding: max(4vh, 0.5rem) 0;
 
   --gameboard-padding: 0px;
   --gameboard-gap: max(2vw, 0.5em);
@@ -39,6 +49,8 @@
   --cards-container-gap: max(2vw, 0.5em);
 
   --single-card-size: min(70cqh, 100cqw);
+
+  /* styles specific to .card elements ------------------ */
 
   --card-radius: 0.5vw;
   --card-shadow: 0.2vmin 0.3vmin 1vmin black;
@@ -50,6 +62,8 @@
   --card-hover-button-scale: 1.1;
   --card-hover-button-no-focus-scale: 0.9;
   --card-content-size: 90%;
+  --card-flip-height: 18em;
+  --card-perspective: 100em;
 
   /* The following are set and unset via JS
   --home-level-cards-per-row
@@ -67,32 +81,28 @@
   --card-hover-perspective-x
   --card-hover-perspective-y */
 
-  --text-shadow: 0 0.05em 0.1em grey;
-  --shadow-hover-color: rgb(0, 0, 0, 0.6);
-  --text-shadow-hover: var(--text-shadow),
-    -0.25px -0.25px var(--shadow-hover-color),
-    0.25px 0.25px var(--shadow-hover-color);
+  /* styles specific to .info-card elements ------------------ */
 
   --info-card-content-padding: 10%;
   --info-card-content-radial-color-0: rgb(255, 255, 255, 0.25);
   --info-card-content-radial-color-100: rgb(0, 0, 0, 0.95);
   --info-card-content-greyscale: 0;
-  --info-card-content-color: white;
+  --info-card-content-color: var(--col-txt-light);
   --info-card-content-text-shadow: 0.05em 0.05em 0.05em black;
   --info-card-no-hover-greyscale: 0.5;
   --info-card-no-hover-opacity: 0.05;
 
   --play-game-h2-fontsize: 24cqw;
-  --play-game-best-score-fontsize: 8cqw;
+  --play-game-best-score-fontsize: max(8cqw, 16px);
 
   --game-over-h2-fontsize: 24cqw;
   --game-over-score-fontsize: 8cqw;
   --game-over-best-score-fontsize: 8cqw;
-  --game-over-btn-fontsize: 6cqw;
+  --game-over-btn-fontsize: 7cqw;
   --game-over-best-score-animation-duration: 1.8s;
+  --game-over-btns-gap: 6cqw;
 
-  --card-flip-height: 18em;
-  --card-perspective: 100em;
+  /* other styles ----------------------------------- */
 
   --button-border: 2px solid black;
 

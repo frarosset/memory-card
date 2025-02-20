@@ -51,7 +51,7 @@ body {
 }
 
 #root {
-  overflow: hidden auto;
+  overflow: hidden hidden;
   display: flex;
   flex-direction: column;
   align-items: center;

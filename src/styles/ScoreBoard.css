@@ -5,7 +5,6 @@
     "bestscore-new bestscore-label bestscore-value";
   grid-template-columns: max-content max-content minmax(1.5em, max-content);
   gap: 0 0.5em;
-  padding: var(--);
 }
 
 .scoreboard-score-label {

@@ -8,6 +8,10 @@
   perspective: 100em;
 }
 
+.title:hover:not(.animate) {
+  cursor: pointer;
+}
+
 .title.animate .title-letter,
 .title:hover .title-letter {
   text-shadow: var(--text-shadow-hover);
