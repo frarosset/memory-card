@@ -1,5 +1,5 @@
-// const apiUrl = `https://api.ai-cats.net/v1/cat?size=256&theme=All`; // actual api
-const apiUrl = "/card-front.jpg"; // use this during development, to avoid actual api call
+const apiUrl = `https://api.ai-cats.net/v1/cat?size=512&theme=All`; // actual api
+// const apiUrl = "/card-front.jpg"; // use this during development, to avoid actual api call
 
 async function initCardData(signal) {
   // generate a unique id

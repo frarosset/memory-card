@@ -185,7 +185,7 @@ function GameBoard({
               key={idx}
               src={card.url}
               id={card.id}
-              customClass={isSelectedCard(card.id) ? "selected" : ""}
+              // customClass={isSelectedCard(card.id) ? "selected" : ""} // for testing
             />
           );
         })
