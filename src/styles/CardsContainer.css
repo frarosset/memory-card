@@ -1,9 +1,28 @@
 .cards-container {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  align-content: center;
+  justify-content: space-evenly;
+
+  /* LAYOUT 1 */
+  /* align-content: center;
+  justify-content: center; */
+
+  /* LAYOUT 2 */
+  /* align-content: stretch;
+  justify-content: space-evenly; */
+
+  /* LAYOUT 3 */
+  /* display: grid;
   align-content: center;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  align-content: space-evenly;
+  justify-content: space-evenly;
+  grid-template-rows: repeat(var(--cards-per-col), auto);
+  grid-template-columns: repeat(var(--cards-per-row), auto); */
 
   height: 100%;
   width: 100%;
