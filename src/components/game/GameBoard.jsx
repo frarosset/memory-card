@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { PropTypes } from "prop-types";
 import GameCard from "./GameCard.jsx";
-import useDeck from "./useDeck.js";
-import useSelectedCards from "./useSelectedCards.js";
-import useTableCards from "./useTableCards.js";
+import useDeck from "../../customHooks/useDeck.js";
+import useSelectedCards from "../../customHooks/useSelectedCards.js";
+import useTableCards from "../../customHooks/useTableCards.js";
 import useCardsPerRowAndCol from "../../customHooks/useCardsPerRowAndCol.js";
 import "../../styles/GameBoard.css";
 import "../../styles/CardsContainer.css";

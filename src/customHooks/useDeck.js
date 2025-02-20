@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import fetchCardsData from "../../helper/fetching/fetchCardsData.js";
+import fetchCardsData from "../helper/fetching/fetchCardsData.js";
 
 function useDeck(requestedDeckSize) {
   // The deck is an array containing the info of the possible cards to use, and is a
