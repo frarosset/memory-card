@@ -18,9 +18,9 @@
   --secondary-font: var(--default-font);
 
   /* default card faces */
-  --card-rear-bg-image: url("./card-rear.jpg");
-  --card-front-bg-image: url("./card-rear.jpg");
-  --info-card-content-front-bg-image: url("./card-front.jpg");
+  --card-rear-bg-image: url("/card-rear.jpg");
+  --card-front-bg-image: url("/card-rear.jpg");
+  --info-card-content-front-bg-image: url("/card-front.jpg");
 
   --txt-lineheight: 1;
   --txt-fontsize: max(18px, 2vmin);
