@@ -132,6 +132,7 @@ for such css variables. */
 .card:hover {
   box-shadow: 0 0 var(--card-hover-shadow-size, 0)
     var(--card-hover-shadow-color);
+  z-index: 1;
 }
 
 /* reset the styles on active status */
@@ -162,11 +163,12 @@ for such css variables. */
 
 @keyframes flip-to-front-ini {
   0% {
-    transform: rotate(10deg) translateZ(var(--card-perspective))
-      rotateY(-180deg);
+    transform: rotate(var(--card-rotation-rear))
+      translateZ(var(--card-perspective)) rotateY(-180deg);
   }
   100% {
-    transform: scale(var(--card-hover-scale, 1)) translateZ(0) rotateY(-360deg)
+    transform: rotate(var(--card-rotation-front))
+      scale(var(--card-hover-scale, 1)) translateZ(0) rotateY(-360deg)
       rotate3d(
         var(--card-hover-rotate3d-x, 0),
         var(--card-hover-rotate3d-y, 0),
@@ -178,13 +180,15 @@ for such css variables. */
 
 @keyframes flip-to-front-game-over {
   0% {
-    transform: rotate(10deg) translateZ(0em) rotateY(-180deg);
+    transform: rotate(var(--card-rotation-rear)) translateZ(0em)
+      rotateY(-180deg);
   }
   50% {
     transform: rotate(0deg) translateZ(var(--card-flip-height)) rotateY(-270deg);
   }
   100% {
-    transform: rotate(-20deg) translateZ(0em) rotateY(-360deg)
+    transform: rotate(var(--card-rotation-front)) translateZ(0em)
+      rotateY(-360deg)
       rotate3d(
         var(--card-hover-rotate3d-x, 0),
         var(--card-hover-rotate3d-y, 0),
@@ -196,14 +200,15 @@ for such css variables. */
 
 @keyframes flip-to-front {
   0% {
-    transform: translateZ(0em) rotateY(-180deg);
+    transform: rotate(var(--card-rotation-rear)) translateZ(0em)
+      rotateY(-180deg);
   }
   50% {
     transform: translateZ(var(--card-flip-height)) rotateY(-270deg);
   }
   100% {
-    transform: scale(var(--card-hover-scale, 1)) translateZ(0em)
-      rotateY(-360deg)
+    transform: rotate(var(--card-rotation-front))
+      scale(var(--card-hover-scale, 1)) translateZ(0em) rotateY(-360deg)
       rotate3d(
         var(--card-hover-rotate3d-x, 0),
         var(--card-hover-rotate3d-y, 0),
@@ -215,12 +220,13 @@ for such css variables. */
 
 @keyframes flip-to-back {
   0% {
-    transform: translateZ(0em) rotateY(0deg);
+    transform: rotate(var(--card-rotation-front)) translateZ(0em) rotateY(0deg);
   }
   50% {
     transform: translateZ(var(--card-flip-height)) rotateY(-90deg);
   }
   100% {
-    transform: translateZ(0em) rotateY(-180deg);
+    transform: rotate(var(--card-rotation-rear)) translateZ(0em)
+      rotateY(-180deg);
   }
 }

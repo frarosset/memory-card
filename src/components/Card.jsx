@@ -1,10 +1,17 @@
+import { useRef } from "react";
 import { PropTypes } from "prop-types";
 import "../styles/Card.css";
 
 function Card({ children, customClass, customAttributes, onClickCallback }) {
+  const style = useRef({
+    "--card-rotation-front": `${20 * (Math.random() * 2 - 1)}deg`,
+    "--card-rotation-rear": `${20 * (Math.random() * 2 - 1)}deg`,
+  });
+
   return (
     <div
       className={`card ${customClass}`}
+      style={style.current}
       onPointerEnter={onPointerEnterCallback}
       {...customAttributes}
       onClick={onClickCallback}
