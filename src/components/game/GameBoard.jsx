@@ -118,38 +118,31 @@ function GameBoard({
     numOfSelectedCards
   );
 
-  useEffect(() => {
-    const isInit = gameState === "fetching-init";
-    const isFetching = isInit || gameState === "fetching";
+  if (deckSize === deck.size) {
+    if (gameState === "fetching-init") {
+      setGameState("fetching-init-done");
+    } else if (gameState === "fetching") {
+      // When not in the initialization phase, after the fetching is done,
+      // you might want to update the table size and the selected card fraction
+      // in the table. Use a temporary game state, which triggers a re-render.
+      // On the next game render, the table cards are refreshed
+      setTimeout(() => {
+        setGameState("fetching-done");
+        setTableSize((x) => x + actualIncrementTableSize);
+        setSelectedCardsFractInTable((x) => scfK + scfA * x);
+      }, delayFetchingToReadyInMs);
+    }
+  }
 
-    if (isFetching && deckSize === deck.size) {
-      if (isInit) {
-        setGameState("ready-init");
-        refreshTableCards();
-      } else {
-        // When not in the initialization phase, after the fetching is done,
-        // you might want to update the table size and the selected card fraction
-        // in the table. Use a temporary game state, which triggers a re-render.
-        // On the next game render, the table cards are refreshed
-        setTimeout(() => {
-          setGameState("update-table-settings");
-          setTableSize((x) => x + actualIncrementTableSize);
-          setSelectedCardsFractInTable((x) => scfK + scfA * x);
-        }, delayFetchingToReadyInMs);
-      }
-    } else if (gameState === "update-table-settings") {
+  useEffect(() => {
+    if (gameState === "fetching-init-done") {
+      refreshTableCards();
+      setGameState("ready-init");
+    } else if (gameState === "fetching-done") {
       refreshTableCards();
       setGameState("ready");
     }
-  }, [
-    deck,
-    deckSize,
-    gameState,
-    refreshTableCards,
-    actualIncrementTableSize,
-    scfK,
-    scfA,
-  ]);
+  }, [gameState, refreshTableCards]);
 
   // Temporary click callback to test the deck handling of useDeck
   // Event delegation is used: when a click is captured, we have to check
