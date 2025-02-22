@@ -33,7 +33,7 @@ function GameBoard({
   // It is not necessarily equal to the actual size of the deck defined next,
   // because such deck is filled asyncronously to deckSize by useDeck() custom hook.
   // Take into account the TableSize, if this is larger than the desired deckSize
-  const [deckSize, setDeckSize] = useState(
+  const [deckSize, setDeckSize] = useState(() =>
     Math.max(initialDeckSize, initialTableSize)
   );
 

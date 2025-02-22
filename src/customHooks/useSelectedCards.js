@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function useSelectedCards() {
-  const [selectedCards, setSelectedCards] = useState(new Set([]));
+  const [selectedCards, setSelectedCards] = useState(() => new Set([]));
 
   function isSelectedCard(id) {
     return selectedCards.has(id);

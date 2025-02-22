@@ -30,7 +30,7 @@ function useDeck(requestedDeckSize) {
   // development (with StrictMode enabled) or when multiple size updates are issued quickly,
   // also enabling low-end mobile device on DevTools, to simulate slow fetching.
 
-  const [deck, setDeck] = useState(new Map());
+  const [deck, setDeck] = useState(() => new Map());
   const cardsToFetch = useRef(requestedDeckSize);
 
   useEffect(() => {
