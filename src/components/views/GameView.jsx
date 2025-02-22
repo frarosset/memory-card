@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { PropTypes } from "prop-types";
 import GameBoard from "../game/GameBoard.jsx";
 import ScoreBoard from "../game/ScoreBoard.jsx";
@@ -15,10 +15,10 @@ function GameView({
 }) {
   // Game score
   const [score, setScore] = useState(0);
-  const isNewBestScore = useRef(false);
+  const [isNewBestScore, setIsNewBestScore] = useState(false);
 
   const gameOverCallback = () =>
-    setGameOverViewCallback(score, isNewBestScore.current, gameSettings.level);
+    setGameOverViewCallback(score, isNewBestScore, gameSettings.level);
 
   // A function that increment the score state by delta and
   // at the same time checks whether the bestScore is improved
@@ -26,7 +26,7 @@ function GameView({
     setScore((s) => {
       const nextScore = s + delta;
       if (nextScore > bestScore) {
-        isNewBestScore.current = true;
+        setIsNewBestScore(true);
         setBestScore(nextScore);
       }
       return nextScore;
@@ -37,10 +37,7 @@ function GameView({
     <div className={"view game-view"}>
       <header>
         <Title onClickCallback={setHomeViewCallback} />
-        <ScoreBoard
-          {...{ score, bestScore }}
-          isNewBestScore={isNewBestScore.current}
-        />
+        <ScoreBoard {...{ score, bestScore, isNewBestScore }} />
       </header>
       <main>
         <GameBoard

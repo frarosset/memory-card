@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
 import GameCard from "./GameCard.jsx";
 import useDeck from "../../customHooks/useDeck.js";
@@ -24,10 +24,12 @@ function GameBoard({
   // Validate increment inputs. When incrementing the deck size,
   // consider also the increment on the table, to avoid being out
   // of unselected cards to be used in there.
-  const actualIncrementDeckSize = useRef(
-    Math.max(incrementDeckSize, 1) + Math.max(incrementTableSize, 0)
+  const [actualIncrementDeckSize] = useState(
+    () => Math.max(incrementDeckSize, 1) + Math.max(incrementTableSize, 0)
   );
-  const actualIncrementTableSize = useRef(Math.max(incrementTableSize, 0));
+  const [actualIncrementTableSize] = useState(() =>
+    Math.max(incrementTableSize, 0)
+  );
 
   // The imposed size of the deck, which contains the possible cards to use.
   // It is not necessarily equal to the actual size of the deck defined next,
@@ -76,16 +78,17 @@ function GameBoard({
   // and aSelectedCardsFractInTable = 1, which are the default values for such props,
   // ie, just provide initialSelectedCardsFractInTable as prop.
 
-  const scfA = useRef(clipFraction(aSelectedCardsFractInTable));
-  const scfY0 = useRef(clipFraction(initialSelectedCardsFractInTable));
-  const scfLimit = useRef(
-    Math.max(clipFraction(limitSelectedCardsFractInTable), scfY0.current)
+  const [scfA] = useState(() => clipFraction(aSelectedCardsFractInTable));
+  const [scfY0] = useState(() =>
+    clipFraction(initialSelectedCardsFractInTable)
   );
-  const scfK = useRef((1 - scfA.current) * scfLimit.current);
+  const [scfLimit] = useState(() =>
+    Math.max(clipFraction(limitSelectedCardsFractInTable), scfY0)
+  );
+  const [scfK] = useState(() => (1 - scfA) * scfLimit);
 
-  const [selectedCardsFractInTable, setSelectedCardsFractInTable] = useState(
-    scfY0.current
-  );
+  const [selectedCardsFractInTable, setSelectedCardsFractInTable] =
+    useState(scfY0);
 
   // The deck is handled internally by the useDeck custom hook.
   // The returned deck should not be modified.
@@ -130,15 +133,23 @@ function GameBoard({
         // On the next game render, the table cards are refreshed
         setTimeout(() => {
           setGameState("update-table-settings");
-          setTableSize((x) => x + actualIncrementTableSize.current);
-          setSelectedCardsFractInTable((x) => scfK.current + scfA.current * x);
+          setTableSize((x) => x + actualIncrementTableSize);
+          setSelectedCardsFractInTable((x) => scfK + scfA * x);
         }, delayFetchingToReadyInMs);
       }
     } else if (gameState === "update-table-settings") {
       refreshTableCards();
       setGameState("ready");
     }
-  }, [deck, deckSize, gameState, refreshTableCards]);
+  }, [
+    deck,
+    deckSize,
+    gameState,
+    refreshTableCards,
+    actualIncrementTableSize,
+    scfK,
+    scfA,
+  ]);
 
   // Temporary click callback to test the deck handling of useDeck
   // Event delegation is used: when a click is captured, we have to check
@@ -160,7 +171,7 @@ function GameBoard({
     incrementScore(1);
     setSelectedCard(cardId);
     setGameState("fetching");
-    setDeckSize((x) => x + actualIncrementDeckSize.current);
+    setDeckSize((x) => x + actualIncrementDeckSize);
   };
 
   const cardsContainerRef = useCardsPerRowAndCol(

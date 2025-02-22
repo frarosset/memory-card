@@ -31,7 +31,7 @@ function useDeck(requestedDeckSize) {
   // also enabling low-end mobile device on DevTools, to simulate slow fetching.
 
   const [deck, setDeck] = useState(() => new Map());
-  const cardsToFetch = useRef(requestedDeckSize);
+  const cardsToFetch = useRef(requestedDeckSize); // this is not used during rendering
 
   useEffect(() => {
     // console.log("EffectInDeck", {
