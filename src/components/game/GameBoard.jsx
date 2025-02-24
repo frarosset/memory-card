@@ -24,12 +24,12 @@ function GameBoard({
   // Validate increment inputs. When incrementing the deck size,
   // consider also the increment on the table, to avoid being out
   // of unselected cards to be used in there.
-  const [actualIncrementDeckSize] = useState(
-    () => Math.max(incrementDeckSize, 1) + Math.max(incrementTableSize, 0)
-  );
-  const [actualIncrementTableSize] = useState(() =>
-    Math.max(incrementTableSize, 0)
-  );
+  const incrementDeckSizeCallback = (x) => {
+    return x + Math.max(incrementDeckSize, 1) + Math.max(incrementTableSize, 0);
+  };
+  const incrementTableSizeCallback = (x) => {
+    return x + Math.max(incrementTableSize, 0);
+  };
 
   // The imposed size of the deck, which contains the possible cards to use.
   // It is not necessarily equal to the actual size of the deck defined next,
@@ -78,17 +78,19 @@ function GameBoard({
   // and aSelectedCardsFractInTable = 1, which are the default values for such props,
   // ie, just provide initialSelectedCardsFractInTable as prop.
 
-  const [scfA] = useState(() => clipFraction(aSelectedCardsFractInTable));
-  const [scfY0] = useState(() =>
+  const incrementSelectedCardsFractInTableCallback = (x) => {
+    const scfA = clipFraction(aSelectedCardsFractInTable);
+    const scfLimit = Math.max(
+      clipFraction(limitSelectedCardsFractInTable),
+      clipFraction(initialSelectedCardsFractInTable)
+    );
+    const scfK = (1 - scfA) * scfLimit;
+    return scfK + scfA * x;
+  };
+
+  const [selectedCardsFractInTable, setSelectedCardsFractInTable] = useState(
     clipFraction(initialSelectedCardsFractInTable)
   );
-  const [scfLimit] = useState(() =>
-    Math.max(clipFraction(limitSelectedCardsFractInTable), scfY0)
-  );
-  const [scfK] = useState(() => (1 - scfA) * scfLimit);
-
-  const [selectedCardsFractInTable, setSelectedCardsFractInTable] =
-    useState(scfY0);
 
   // The deck is handled internally by the useDeck custom hook.
   // The returned deck should not be modified.
@@ -128,8 +130,10 @@ function GameBoard({
       // On the next game render, the table cards are refreshed
       setTimeout(() => {
         setGameState("fetching-done");
-        setTableSize((x) => x + actualIncrementTableSize);
-        setSelectedCardsFractInTable((x) => scfK + scfA * x);
+        setTableSize(incrementTableSizeCallback);
+        setSelectedCardsFractInTable(
+          incrementSelectedCardsFractInTableCallback
+        );
       }, delayFetchingToReadyInMs);
     }
   }
@@ -164,7 +168,7 @@ function GameBoard({
     incrementScore(1);
     setSelectedCard(cardId);
     setGameState("fetching");
-    setDeckSize((x) => x + actualIncrementDeckSize);
+    setDeckSize(incrementDeckSizeCallback);
   };
 
   const cardsContainerRef = useCardsPerRowAndCol(
