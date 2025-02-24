@@ -27,9 +27,6 @@ function GameBoard({
   const incrementDeckSizeCallback = (x) => {
     return x + Math.max(incrementDeckSize, 1) + Math.max(incrementTableSize, 0);
   };
-  const incrementTableSizeCallback = (x) => {
-    return x + Math.max(incrementTableSize, 0);
-  };
 
   // The imposed size of the deck, which contains the possible cards to use.
   // It is not necessarily equal to the actual size of the deck defined next,
@@ -78,16 +75,6 @@ function GameBoard({
   // and aSelectedCardsFractInTable = 1, which are the default values for such props,
   // ie, just provide initialSelectedCardsFractInTable as prop.
 
-  const incrementSelectedCardsFractInTableCallback = (x) => {
-    const scfA = clipFraction(aSelectedCardsFractInTable);
-    const scfLimit = Math.max(
-      clipFraction(limitSelectedCardsFractInTable),
-      clipFraction(initialSelectedCardsFractInTable)
-    );
-    const scfK = (1 - scfA) * scfLimit;
-    return scfK + scfA * x;
-  };
-
   const [selectedCardsFractInTable, setSelectedCardsFractInTable] = useState(
     clipFraction(initialSelectedCardsFractInTable)
   );
@@ -120,7 +107,11 @@ function GameBoard({
     numOfSelectedCards
   );
 
-  if (deckSize === deck.size) {
+  useEffect(() => {
+    if (deckSize !== deck.size) {
+      return;
+    }
+
     if (gameState === "fetching-init") {
       setGameState("fetching-init-done");
     } else if (gameState === "fetching") {
@@ -128,25 +119,37 @@ function GameBoard({
       // you might want to update the table size and the selected card fraction
       // in the table. Use a temporary game state, which triggers a re-render.
       // On the next game render, the table cards are refreshed
-      setTimeout(() => {
+
+      const timeout = setTimeout(() => {
         setGameState("fetching-done");
-        setTableSize(incrementTableSizeCallback);
+        setTableSize(incrementTableSizeCallback(incrementTableSize));
         setSelectedCardsFractInTable(
-          incrementSelectedCardsFractInTableCallback
+          incrementSelectedCardsFractInTableCallback(
+            aSelectedCardsFractInTable,
+            limitSelectedCardsFractInTable,
+            initialSelectedCardsFractInTable
+          )
         );
       }, delayFetchingToReadyInMs);
-    }
-  }
 
-  useEffect(() => {
-    if (gameState === "fetching-init-done") {
+      return () => clearTimeout(timeout);
+    } else if (gameState === "fetching-init-done") {
       refreshTableCards();
       setGameState("ready-init");
     } else if (gameState === "fetching-done") {
       refreshTableCards();
       setGameState("ready");
     }
-  }, [gameState, refreshTableCards]);
+  }, [
+    gameState,
+    refreshTableCards,
+    deckSize,
+    deck.size,
+    incrementTableSize,
+    aSelectedCardsFractInTable,
+    limitSelectedCardsFractInTable,
+    initialSelectedCardsFractInTable,
+  ]);
 
   // Temporary click callback to test the deck handling of useDeck
   // Event delegation is used: when a click is captured, we have to check
@@ -205,6 +208,18 @@ function GameBoard({
 function clipFraction(n) {
   return Math.min(Math.max(0, n), 1);
 }
+
+const incrementTableSizeCallback = (increment) => (x) => {
+  return x + Math.max(increment, 0);
+};
+
+const incrementSelectedCardsFractInTableCallback =
+  (a, limit, initial) => (x) => {
+    const scfA = clipFraction(a);
+    const scfLimit = Math.max(clipFraction(limit), clipFraction(initial));
+    const scfK = (1 - scfA) * scfLimit;
+    return scfK + scfA * x;
+  };
 
 GameBoard.propTypes = {
   incrementScore: PropTypes.func,
