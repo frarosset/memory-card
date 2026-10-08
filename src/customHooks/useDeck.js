@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import fetchCardsData from "../helper/fetching/fetchCardsData.js";
 
+const maxNumOfAttempts = 100;
+
 function useDeck(requestedDeckSize) {
   // The deck is an array containing the info of the possible cards to use, and is a
   // state variable, so modifying it always triggers a re-render.
@@ -46,21 +48,45 @@ function useDeck(requestedDeckSize) {
 
     if (cardsToFetch.current > 0) {
       const abortController = new AbortController();
+      let numAttempts = 0;
 
-      const fetchData = async (n) => {
+      const fetchData = async () => {
         try {
-          const newCards = await fetchCardsData(n, abortController.signal);
-          cardsToFetch.current = 0;
-
           const copiedDeck = structuredClone(deck);
-          newCards.forEach((card) => copiedDeck.set(card.id, card));
+
+          while (cardsToFetch.current > 0 && numAttempts < maxNumOfAttempts) {
+            const newCards = await fetchCardsData(
+              cardsToFetch.current,
+              abortController.signal,
+            );
+
+            newCards.forEach((card) => {
+              if (!copiedDeck.has(card.id)) {
+                copiedDeck.set(card.id, card);
+                cardsToFetch.current--;
+              }
+            });
+
+            // const ids = newCards.map((c) => c.id);
+            // console.log(
+            //   ids.length,
+            //   new Set(ids).size,
+            //   copiedDeck.size,
+            //   cardsToFetch.current,
+            //   numAttempts,
+            // );
+            // console.log(ids.sort());
+
+            numAttempts++;
+          }
+
           setDeck(copiedDeck);
         } catch {
           //console.log(e.message);
         }
       };
 
-      fetchData(cardsToFetch.current);
+      fetchData();
 
       return () => {
         abortController.abort();
